@@ -84,7 +84,7 @@ git branch feature-login
 
 **Instructions:**
 ```bash
-git checkout feature-login
+git switch feature-login
 # or (newer syntax):
 git switch feature-login
 ```
@@ -126,7 +126,7 @@ git commit -m "Add basic login functionality"
 
 **Instructions:**
 ```bash
-git checkout main
+git switch main
 # or: git switch main
 ```
 
@@ -137,7 +137,7 @@ git checkout main
 
 **Instructions:**
 ```bash
-git checkout -b feature-ui
+git switch -c feature-ui
 # This creates AND switches to the new branch
 ```
 
@@ -159,7 +159,7 @@ git commit -m "Add basic styling"
 
 **Instructions:**
 ```bash
-git checkout main
+git switch main
 git merge feature-ui
 ```
 
@@ -193,13 +193,13 @@ echo "Version A" > conflict.txt
 git add conflict.txt
 git commit -m "Add conflict.txt with version A"
 
-git checkout feature-login
+git switch feature-login
 echo "Version B" > conflict.txt
 git add conflict.txt
 git commit -m "Add conflict.txt with version B"
 
 # Now merge and create conflict
-git checkout main
+git switch main
 git merge feature-login
 ```
 
@@ -281,7 +281,7 @@ git branch -D feature-login  # Force delete (even if not merged)
 **Instructions:**
 ```bash
 # Assuming you have a remote named 'origin'
-git checkout -b feature-remote
+git switch -c feature-remote
 echo "Remote feature" > remote.txt
 git add remote.txt
 git commit -m "Add remote feature"
@@ -297,9 +297,9 @@ git push -u origin feature-remote
 git branch -r
 
 # Checkout remote branch
-git checkout origin/feature-remote
+git switch origin/feature-remote
 # or create local branch tracking remote
-git checkout -b local-feature origin/feature-remote
+git switch -c local-feature origin/feature-remote
 ```
 
 ### Step 20: Delete Remote Branch
@@ -364,7 +364,7 @@ temp
 ## Summary
 
 Key concepts covered:
-- **Creating branches**: `git branch`, `git checkout -b`
+- **Creating branches**: `git branch`, `git switch -c`
 - **Switching branches**: `git checkout`, `git switch`
 - **Merging**: `git merge`
 - **Conflict resolution**: Manual editing + `git add` + `git commit`

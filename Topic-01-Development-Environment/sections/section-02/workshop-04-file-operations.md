@@ -454,7 +454,6 @@ git mv hello.py main.py
 2. Reset the file to HEAD (last commit):
    ```bash
    git restore README.md
-   # or: git checkout HEAD -- README.md
    ```
 
 3. Check that changes are undone:
@@ -482,7 +481,7 @@ nothing to commit, working tree clean
 2. Choose a commit hash (e.g., the second commit):
    ```bash
    git restore --source=<commit-hash> main.py
-   # or: git checkout <commit-hash> -- main.py
+   # or: git restore --source=<commit-hash> main.py
    ```
 
 3. Check what changed:

@@ -34,7 +34,7 @@ Git operates with three main areas where your files can exist:
 Working Directory ── git add ──► Staging Area ── git commit ──► Repository
        ▲                           │                           │
        │                           │                           │
-       └──── git checkout ─────────┘                           │
+       └──── git restore ──────────┘                           │
            (discard changes)                                   │
                                                                │
                                                ┌───────────────┘
@@ -256,7 +256,7 @@ Changes not staged for commit:
 **Instructions:**
 ```bash
 # Discard all working directory changes
-git checkout -- hello.py
+git restore hello.py
 
 # Check status and file content
 git status
@@ -373,7 +373,7 @@ git commit -m "Important changes"
 
 # Accidentally discard changes (don't do this!)
 echo "More work" >> hello.py
-git checkout -- hello.py  # Oops!
+git restore hello.py  # Oops!
 
 # Changes are gone!
 cat hello.py
@@ -385,7 +385,7 @@ cat hello.py
 git reflog
 
 # Find the commit hash, then restore
-git checkout <commit-hash> -- hello.py
+git restore --source=<commit-hash> hello.py
 ```
 
 ---
@@ -440,7 +440,7 @@ git rm temp.txt
 git status  # Shows deleted file staged
 
 # Restore it
-git checkout -- temp.txt
+git restore temp.txt
 
 # Remove from staging area ONLY (keep in working directory)
 git rm --cached temp.txt
@@ -594,7 +594,7 @@ git reset --hard HEAD~1 # Uncommit and discard changes (dangerous)
 
 ### Lost changes after reset --hard
 **Cause:** Used dangerous command
-**Solution:** Check `git reflog` and use `git checkout <commit> -- <file>` to recover
+**Solution:** Check `git reflog` and use `git restore --source=<commit> <file>` to recover
 
 ---
 
@@ -629,7 +629,7 @@ Now that you understand Git states, you can:
 ## Reflection Questions
 
 1. Why does Git have a staging area? What problem does it solve?
-2. What's the difference between `git reset HEAD` and `git checkout --`?
+2. What's the difference between `git reset HEAD` and `git restore`?
 3. When would you use `git add -p` instead of `git add .`?
 4. How can understanding states help you avoid losing work?
 5. What's the safest way to undo changes in Git?

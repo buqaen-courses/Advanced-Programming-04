@@ -75,7 +75,7 @@ git status
 
 **How to handle:**
 - `git add existing.txt` → moves to staged
-- `git checkout -- existing.txt` → discards changes
+- `git restore existing.txt` → discards changes
 
 ### Staged Files
 Files in the staging area, ready for commit.
@@ -104,7 +104,7 @@ Untracked ────── git add ──────► Staged ────�
     ┌────────────────────────────────────────────────────────────────┘
     │
     ▼
-Modified ◄──── git checkout ──────┐
+Modified ◄──── git restore ──────┐
     ▲                             │
     │                             │
     └────── git add ──────────────┘
@@ -314,7 +314,7 @@ git commit -m "Fix issue #3"
 # You made changes but want to start over
 
 # Discard working directory changes (back to last commit)
-git checkout -- file.txt
+git restore file.txt
 
 # Discard staged changes too
 git reset --hard HEAD
@@ -354,10 +354,10 @@ git add .
 git reflog
 
 # Recover specific commit
-git checkout <commit-hash>
+git switch <commit-hash>
 
 # Create branch from lost state
-git checkout -b recovery-branch <commit-hash>
+git switch -c recovery-branch <commit-hash>
 ```
 
 ### Confusing Status Output
@@ -400,10 +400,10 @@ When HEAD points directly to a commit, not a branch.
 
 ```bash
 # Enter detached HEAD
-git checkout <commit-hash>
+git switch <commit-hash>
 
 # Create branch to exit detached HEAD
-git checkout -b new-branch
+git switch -c new-branch
 ```
 
 ### Stashing (Temporary State Saving)
@@ -472,4 +472,4 @@ Next, you'll learn about [branching fundamentals](05-branching-fundamentals.md).
 2. How do you check what's in the staging area?
 3. What's the difference between `git reset HEAD` and `git reset --hard`?
 4. How do you view changes between different states?
-5. What happens when you run `git checkout -- file.txt`?
+5. What happens when you run `git restore file.txt`?

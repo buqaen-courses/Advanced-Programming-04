@@ -299,7 +299,7 @@ cd project-name
 git remote add upstream https://github.com/original/project-name.git
 
 # Create feature branch
-git checkout -b feature/new-feature
+git switch -c feature/new-feature
 
 # Make changes, commit, push
 # Then create pull request on GitHub
