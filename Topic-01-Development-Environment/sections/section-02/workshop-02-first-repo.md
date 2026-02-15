@@ -446,57 +446,20 @@ git push -u origin main
 
 ---
 
-## Practice Exercises
-
-### Exercise 1: Repository Creation
-1. Create a new directory called `git-exercise`
-2. Initialize it as a Git repository
-3. Create at least 3 files (README.md, script file, config file)
-4. Add and commit all files
-5. View the commit history
-
-### Exercise 2: Repository Cloning
-1. Find a public repository on GitHub
-2. Clone it to your local machine
-3. Explore the repository structure
-4. Check the commit history
-5. View the remote configuration
-
-### Exercise 3: Multiple Repositories
-1. Create two separate repositories in different directories
-2. Add different files to each
-3. Make commits in both
-4. Compare their histories
-5. Practice switching between repositories
-
-### Exercise 4: Repository Configuration
-1. Set repository-specific user information
-2. Configure a custom remote name
-3. Add multiple remotes to one repository
-4. View and compare different configuration levels
-
----
-
-## Verification Checklist
-
-- [ ] Created local repository with `git init`
-- [ ] Added files and made initial commit
-- [ ] Cloned existing repository
-- [ ] Explored repository structure (.git folder)
-- [ ] Configured repository settings
-- [ ] Understood local vs remote repositories
-- [ ] Practiced repository maintenance commands
-
----
-
 ## Key Concepts Covered
 
 ✅ **Repository Creation:** `git init` for new repos, `git clone` for existing ones
+
 ✅ **Repository Structure:** Understanding .git folder and working directory
+
 ✅ **Basic Operations:** status, add, commit, log
+
 ✅ **Remote Repositories:** Cloning and remote configuration
+
 ✅ **Repository Configuration:** Local vs global settings
+
 ✅ **Repository Maintenance:** Health checks and optimization
+
 
 ---
 
@@ -527,16 +490,6 @@ git fsck                    # Check repository health
 git gc                      # Optimize repository
 ```
 
----
-
-## Next Steps
-
-Now that you have repository basics, you can:
-
-1. [Master Git's state management](workshop-03-git-states.md)
-2. [Learn file operations](workshop-04-file-operations.md)
-3. [Explore branching](workshop-05-branching.md)
-4. [Practice with repository homework](../homeworks/homework-02-repository-management.md)
 
 ---
 
@@ -550,19 +503,6 @@ Now that you have repository basics, you can:
 
 ---
 
-## Troubleshooting
-
-### Repository Issues
-- **"fatal: not a git repository"**: Check if you're in the correct directory with `ls -la`
-- **"Permission denied"**: Verify repository URL and authentication
-- **"Repository not found"**: Check if repository exists and is public
-- **"Already exists"**: Choose a different local directory name
-
-### Commit Issues
-- **"nothing to commit"**: Add files first with `git add`
-- **"empty commit"**: Make sure you've made changes to tracked files
-
----
 
 ## Workshop Complete! 🎉
 
@@ -574,8 +514,3 @@ You've created your first Git repositories! You now understand:
 - **Basic Workflow:** Add, commit, and track changes
 - **Remote Operations:** Working with GitHub/GitLab repositories
 
-**Repository Skills:**
-- Local repository creation and management
-- Remote repository cloning and configuration
-- Repository inspection and maintenance
-- Basic Git workflow implementation

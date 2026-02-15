@@ -1,9 +1,9 @@
 # Workshop 4: File Operations (Add, Commit, Push)
 
-## Duration: 60-75 minutes
+## Duration: 75-90 minutes
 
 ## Objective
-By the end of this workshop, you will master file operations in Git, including staging, committing, and pushing to remote repositories.
+By the end of this workshop, you will master file operations in Git, including staging, committing, pushing to remote repositories, restoring files, and viewing file change history.
 
 ## Prerequisites
 - Git installed and configured ([Workshop 1](workshop-01-basic-setup.md))
@@ -437,7 +437,99 @@ git mv hello.py main.py
 
 ---
 
-## Part 10: Cleanup (Optional)
+## Part 10: Restoring Files and Viewing File History
+
+### Step 19: Reset File Changes to HEAD
+
+**What you'll do:** Learn how to undo changes to files by resetting them to the last commit state.
+
+**Instructions:**
+
+1. First, make some changes to a file:
+   ```bash
+   echo "# Temporary change" >> README.md
+   git status
+   ```
+
+2. Reset the file to HEAD (last commit):
+   ```bash
+   git restore README.md
+   # or: git checkout HEAD -- README.md
+   ```
+
+3. Check that changes are undone:
+   ```bash
+   git status
+   ```
+
+**Expected Output:**
+```
+On branch main
+nothing to commit, working tree clean
+```
+
+### Step 20: Restore File to a Specific Commit
+
+**What you'll do:** Restore a file to how it looked in a previous commit.
+
+**Instructions:**
+
+1. First, check the commit history:
+   ```bash
+   git log --oneline
+   ```
+
+2. Choose a commit hash (e.g., the second commit):
+   ```bash
+   git restore --source=<commit-hash> main.py
+   # or: git checkout <commit-hash> -- main.py
+   ```
+
+3. Check what changed:
+   ```bash
+   git diff
+   ```
+
+4. Commit the restoration if desired:
+   ```bash
+   git add main.py
+   git commit -m "Restore main.py to previous version"
+   ```
+
+### Step 21: View File Change History
+
+**What you'll do:** Examine the complete history of changes made to a specific file.
+
+**Instructions:**
+
+1. View commit history for a specific file:
+   ```bash
+   git log --follow main.py
+   ```
+
+2. View detailed changes for each commit:
+   ```bash
+   git log -p --follow main.py
+   ```
+
+3. View who changed what and when:
+   ```bash
+   git blame main.py
+   ```
+
+4. See changes between specific commits:
+   ```bash
+   git diff <commit1> <commit2> main.py
+   ```
+
+**Discussion Points:**
+- What does `git log --follow` show?
+- How is `git blame` different from `git log`?
+- When would you use `git restore` vs `git reset`?
+
+---
+
+## Part 11: Cleanup (Optional)
 
 ### Step 19: Remove Test Repository
 
@@ -446,20 +538,6 @@ git mv hello.py main.py
 cd ..
 rm -rf git-file-practice
 ```
-
----
-
-## Verification Checklist
-
-- [ ] Created and initialized repository
-- [ ] Added files using different methods (`git add`, `git add .`, `git add -p`)
-- [ ] Made multiple commits with good messages
-- [ ] Modified existing files and committed changes
-- [ ] Created and added new files
-- [ ] Connected to remote repository
-- [ ] Pushed commits to GitHub
-- [ ] Renamed and removed files
-- [ ] Viewed commit history and diffs
 
 ---
 
@@ -493,12 +571,23 @@ git push
 ## What You've Accomplished
 
 ✅ **File Staging:** Mastered different ways to stage files
+
 ✅ **Committing:** Created multiple commits with meaningful messages
+
 ✅ **File Modification:** Updated existing files and tracked changes
+
 ✅ **Remote Operations:** Connected to GitHub and pushed work
+
 ✅ **File Management:** Renamed and removed files with Git
+
 ✅ **History Analysis:** Viewed and compared commit history
+
 ✅ **Selective Staging:** Used interactive add for precise control
+
+✅ **File Restoration:** Reset files to HEAD and restored to specific commits
+
+✅ **File History:** Viewed complete change history and file blame information
+
 
 ---
 
@@ -509,6 +598,8 @@ git push
 3. **Commit Messages:** Clear, descriptive commit messages
 4. **Remote Repositories:** Pushing work to GitHub
 5. **File Operations:** Add, remove, rename with Git tracking
+6. **File Restoration:** Reset and restore files to previous states
+7. **File History:** Track changes and authorship over time
 
 ---
 
@@ -524,49 +615,10 @@ git diff --staged     # View staged changes
 git mv <old> <new>    # Rename file
 git rm <file>         # Remove file
 git push              # Push to remote
+git restore <file>    # Reset file to HEAD
+git restore --source=<commit> <file>  # Restore file from specific commit
+git log --follow <file>    # View file history across renames
+git log -p <file>     # View detailed file changes
+git blame <file>      # Show who changed each line
 ```
 
----
-
-## Next Steps
-
-Now that you master file operations, you can:
-
-1. [Learn about branching](../tutorials/05-branching-fundamentals.md)
-2. [Explore merge conflicts](../workshops/workshop-05-merge-conflict.md)
-3. [Set up collaborative workflows](../tutorials/09-collaboration.md)
-4. Complete [homework assignments](../homeworks/)
-
----
-
-## Reflection Questions
-
-1. How does staging help with organizing commits?
-2. When would you use `git add .` vs `git add -p`?
-3. Why are good commit messages important?
-4. How does pushing to remote repositories help collaboration?
-
----
-
-## Help & Support
-
-- **Git Commands:** `git help <command>` or `git <command> --help`
-- **GitHub Issues:** Check repository's Issues tab
-- **Status Confusion:** Always run `git status` first
-- **Push Problems:** Verify remote URL with `git remote -v`
-
----
-
-## Workshop Complete! 🎉
-
-You've mastered Git file operations! You can now:
-- Stage files selectively
-- Create meaningful commits
-- Push work to remote repositories
-- Manage file changes professionally
-
-**Your GitHub repository now contains:**
-- Multiple commits with good history
-- All your practice files
-- Professional development workflow
-- Ready for collaboration and further development
