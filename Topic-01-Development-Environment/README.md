@@ -47,19 +47,19 @@ Subject-01-Development-Environment/
 │   ├── section-01/                     # Git Introduction
 │   │   ├── tutorial.md                 # Git concepts and basics
 │   │   ├── workshop.md                 # Git installation workshop
-│   │   ├── homework.md                 # Basic Git exercises
-│   │   ├── homework_fa.md              # Persian homework
 │   │   └── template/                   # Project template files
 │   ├── section-02/                     # Repository Management
 │   │   ├── tutorial.md                 # Repository operations
-│   │   ├── workshop.md                 # Repository workshop
-│   │   ├── homework.md                 # Repository exercises
-│   │   └── homework_fa.md              # Persian homework
+│   │   └── workshop.md                 # Repository workshop
 │   └── section-03/                     # Git States & Files
 │       ├── tutorial.md                 # Git states explanation
-│       ├── workshop.md                 # File operations workshop
-│       ├── homework.md                 # Advanced exercises
-│       └── homework_fa.md              # Persian homework
+│       └── workshop.md                 # File operations workshop
+├── homeworks/                           # Moved to centralized Homeworks folder
+│   ├── homework-01-git-basics/         # Basic Git exercises
+│   ├── homework-02-repository-management/ # Repository exercises
+│   ├── homework-03-git-states-files/   # Git states mastery
+│   ├── homework-04-file-operations/    # File operations & remotes
+│   └── homework-05-branching/          # Branching fundamentals
 ├── resources/
 │   ├── cheatsheet.md                   # Git commands reference
 │   └── useful-links.md                 # Additional resources

@@ -1,4 +1,4 @@
-# Workshop 3: File Operations (Add, Commit, Push)
+# Workshop 4: File Operations (Add, Commit, Push)
 
 ## Duration: 60-75 minutes
 
@@ -8,7 +8,7 @@ By the end of this workshop, you will master file operations in Git, including s
 ## Prerequisites
 - Git installed and configured ([Workshop 1](workshop-01-basic-setup.md))
 - Basic repository created ([Workshop 2](workshop-02-first-repo.md))
-- Understanding of Git states ([Tutorial 4](../tutorials/04-git-states.md))
+- Understanding of Git states ([Tutorial 3](../tutorials/03-git-states.md))
 
 ## Materials Needed
 - Computer with Git installed
@@ -25,25 +25,21 @@ By the end of this workshop, you will master file operations in Git, including s
 **What you'll do:** Create a fresh repository for practicing file operations.
 
 **Instructions:**
-1. Create and enter a new directory:
-   ```bash
-   mkdir git-file-practice
-   cd git-file-practice
-   ```
+```bash
+# Create and enter a new directory:
+mkdir git-file-practice
+cd git-file-practice
 
-2. Initialize Git repository:
-   ```bash
-   git init
-   ```
+# Initialize Git repository:
+git init
 
-3. Create initial files:
-   ```bash
-   echo "# File Operations Practice" > README.md
-   echo "print('Hello, Git!')" > hello.py
-   echo "console.log('Hello, Git!');" > hello.js
-   mkdir styles
-   echo "body { color: blue; }" > styles/main.css
-   ```
+# Create initial files:
+echo "# File Operations Practice" > README.md
+echo "print('Hello, Git!')" > hello.py
+echo "console.log('Hello, Git!');" > hello.js
+mkdir styles
+echo "body { color: blue; }" > styles/main.css
+```
 
 ---
 
