@@ -10,6 +10,8 @@ By the end of this workshop, you will master Git's three main areas (working dir
 - Basic repository operations ([Workshop 2](workshop-02-first-repo.md))
 - Understanding of Git concepts ([Tutorial 3](../tutorials/03-repository-basics.md))
 
+**Note:** This workshop uses modern Git commands (`git restore`) introduced in Git 2.23 for discarding changes and restoring files, providing clearer separation from branch switching operations.
+
 ## Materials Needed
 - Computer with Git installed
 - Terminal/command prompt
@@ -528,7 +530,7 @@ git commit -m "msg"     # Staging Area → Repository
 git diff                # Compare Working Directory vs Staging Area
 git diff --staged       # Compare Staging Area vs Repository
 git diff HEAD           # Compare Working Directory vs Repository
-git checkout -- <file>  # Repository → Working Directory (discard changes)
+git restore <file>  # Repository → Working Directory (discard changes)
 git reset HEAD <file>   # Staging Area → Working Directory (unstaging)
 git reset --hard HEAD   # Repository → Working Directory + Staging Area
 ```

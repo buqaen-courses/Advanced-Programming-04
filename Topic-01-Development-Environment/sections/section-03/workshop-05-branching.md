@@ -11,6 +11,8 @@ By the end of this workshop, you will understand Git branching, create and manag
 - File operations ([Workshop 4](workshop-04-file-operations.md))
 - Understanding of Git states ([Tutorial 3](../tutorials/03-git-states.md))
 
+**Note:** This workshop uses modern Git commands (`git switch`, `git switch -c`) introduced in Git 2.23. These provide clearer, more intuitive branch operations compared to the older `git checkout` commands.
+
 ## Materials Needed
 - Computer with Git installed
 - Terminal/command prompt
