@@ -18,10 +18,17 @@ This subject provides a comprehensive foundation in version control and developm
 - Basic Git operations (init, add, commit, status)
 - Working with local repositories
 
-### 3. Advanced Git Operations
+### 3. GitHub Authentication
+- Understanding Personal Access Tokens
+- Generating and managing PATs securely
+- Using PATs for Git operations
+- Authentication troubleshooting
+
+### 4. Advanced Git Operations
 - Understanding Git states (working directory, staging, repository)
 - File tracking and management
 - Branching and merging concepts
+- Remote repository operations
 - Collaboration workflows and best practices
 
 ## Key Topics
@@ -30,36 +37,39 @@ This subject provides a comprehensive foundation in version control and developm
 - **Repository Management**: Creating, cloning, and maintaining repositories
 - **File Operations**: Add, commit, status, and log commands
 - **Git States**: Working directory, staging area, and repository
+- **GitHub Authentication**: Personal Access Tokens and secure authentication
+- **Branching & Merging**: Advanced Git operations for collaboration
 - **Development Tools**: Editors, terminals, and extensions
 - **Collaboration**: Branching, merging, and team workflows
 
 ## Materials Structure
 
 ```
-Subject-01-Development-Environment/
+Topic-01-Development-Environment/
 ├── README.md                           # This overview
 ├── installation/
 │   ├── tools-overview.md               # Development tools guide
 │   ├── windows-setup.md                # Windows installation
 │   ├── macos-setup.md                  # macOS installation
 │   └── linux-setup.md                  # Linux installation
-├── sections/
-│   ├── section-01/                     # Git Introduction
-│   │   ├── tutorial.md                 # Git concepts and basics
-│   │   ├── workshop.md                 # Git installation workshop
-│   │   └── template/                   # Project template files
-│   ├── section-02/                     # Repository Management
-│   │   ├── tutorial.md                 # Repository operations
-│   │   └── workshop.md                 # Repository workshop
-│   └── section-03/                     # Git States & Files
-│       ├── tutorial.md                 # Git states explanation
-│       └── workshop.md                 # File operations workshop
-├── homeworks/                           # Moved to centralized Homeworks folder
-│   ├── homework-01-git-basics/         # Basic Git exercises
-│   ├── homework-02-repository-management/ # Repository exercises
-│   ├── homework-03-git-states-files/   # Git states mastery
-│   ├── homework-04-file-operations/    # File operations & remotes
-│   └── homework-05-branching/          # Branching fundamentals
+├── tutorials/                          # Theoretical learning materials
+│   ├── tutorial-01-basic-setup.md      # Git concepts and basics
+│   ├── tutorial-02-first-repo.md       # Repository operations
+│   ├── tutorial-03-git-states.md       # Git states explanation
+│   └── tutorial-04-github-pat.md       # GitHub Personal Access Tokens
+├── workshops/                          # Hands-on practical exercises
+│   ├── workshop-01-basic-setup.md      # Git installation workshop
+│   ├── workshop-02-first-repo.md       # Repository workshop
+│   ├── workshop-03-git-states.md       # Git states workshop
+│   ├── workshop-04-file-operations.md  # File operations workshop
+│   ├── workshop-05-branching.md        # Branching fundamentals workshop
+│   └── template/                       # Project template files
+├── homeworks/                          # Independent practice exercises
+│   ├── homework-01-git-basics.md       # Basic Git exercises
+│   ├── homework-02-repository-management.md # Repository exercises
+│   ├── homework-03-git-states-files.md # Git states mastery
+│   ├── homework-04-branching.md        # Branching fundamentals
+│   └── homework-05-branching/          # Advanced branching (folder)
 ├── resources/
 │   ├── cheatsheet.md                   # Git commands reference
 │   └── useful-links.md                 # Additional resources
@@ -84,8 +94,10 @@ By the end of this subject, students will be able to:
 4. **Repository Management**: Create, clone, and manage Git repositories
 5. **File Operations**: Use Git commands to track, stage, and commit changes
 6. **State Management**: Understand and manage Git's working directory, staging area, and repository
-7. **Collaboration Ready**: Prepare for team development workflows and best practices
-8. **Problem Solving**: Troubleshoot common Git issues and development environment problems
+7. **GitHub Authentication**: Generate and manage Personal Access Tokens securely
+8. **Advanced Git Operations**: Work with branches, merges, and remote repositories
+9. **Collaboration Ready**: Prepare for team development workflows and best practices
+10. **Problem Solving**: Troubleshoot common Git issues and development environment problems
 
 ## Special Focus: Professional Development Environment
 
@@ -98,12 +110,14 @@ This subject emphasizes the importance of a well-configured development environm
 
 ## Progression
 
-1. **Start with Setup** (Installation Guides) - Get your environment ready
-2. **Learn Git Basics** (Section 1) - Understand version control fundamentals
-3. **Master Repository Operations** (Section 2) - Learn repository management
-4. **Deepen Git Knowledge** (Section 3) - Understand Git states and advanced operations
-5. **Apply Knowledge** (Homework) - Build real projects with Git
-6. **Collaborate Effectively** (Future Topics) - Build on this foundation
+1. **Start with Setup** (Installation Guides) - Get your development environment ready
+2. **Learn Git Basics** (Tutorial 1 & Workshop 1) - Understand version control fundamentals
+3. **Master Repository Operations** (Tutorial 2 & Workshop 2) - Learn repository management
+4. **Deepen Git Knowledge** (Tutorial 3 & Workshop 3) - Understand Git states and file operations
+5. **Secure GitHub Authentication** (Tutorial 4) - Learn about Personal Access Tokens
+6. **Advanced Operations** (Workshops 4-5) - Master branching and collaboration workflows
+7. **Apply Knowledge** (Homework) - Build real projects with Git
+8. **Collaborate Effectively** (Future Topics) - Build on this foundation
 
 ## Tools Coverage
 
@@ -117,7 +131,8 @@ This subject emphasizes the importance of a well-configured development environm
 
 ## Assessment Strategy
 
-- **Workshops**: Step-by-step guided exercises for installation and basic operations
+- **Tutorials**: Theoretical learning materials with comprehensive explanations
+- **Workshops**: Step-by-step guided exercises for hands-on practice
 - **Homework**: Independent exercises to reinforce learning
 - **Quizzes**: Concept verification and command knowledge
 - **Project Templates**: Ready-to-use project structures for practice
@@ -125,4 +140,4 @@ This subject emphasizes the importance of a well-configured development environm
 
 ## Next Steps
 
-Begin with the **Installation Guides** to set up your development environment, then progress through the sections in order to build a solid foundation in Git and version control. These skills will serve as the foundation for all future development work in this course.
+Begin with the **Installation Guides** to set up your development environment, then progress through the tutorials and workshops in order to build a solid foundation in Git and version control. Start with the theoretical tutorials to understand concepts, then apply your knowledge through the hands-on workshops. These skills will serve as the foundation for all future development work in this course.
