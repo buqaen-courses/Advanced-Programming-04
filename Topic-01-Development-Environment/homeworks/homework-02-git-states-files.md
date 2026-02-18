@@ -1,9 +1,9 @@
-# Homework 3: Git States Mastery - Understanding File Lifecycle
+# Homework 2: Git States Mastery - Understanding File Lifecycle
 
-**Section**: 3 - Understanding Git States
+**Section**: 2 - Understanding Git States
 **Estimated Time**: 100-130 minutes
 **Difficulty**: Intermediate
-**Prerequisites**: Homework 1 & 2 (Git Fundamentals & Repository Operations)
+**Prerequisites**: Homework 1 (Git Fundamentals & Repository Operations)
 
 ---
 

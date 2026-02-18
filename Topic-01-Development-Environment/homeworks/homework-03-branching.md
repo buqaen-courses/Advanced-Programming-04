@@ -1,9 +1,9 @@
-# Homework 4: Git Branching Mastery - Parallel Development Workflows
+# Homework 3: Git Branching Mastery - Parallel Development Workflows
 
 **Section**: 3 - Understanding Git States (Advanced)
 **Estimated Time**: 120-150 minutes
 **Difficulty**: Advanced
-**Prerequisites**: Homework 1, 2 & 3 (Git Fundamentals, Repository Operations & State Management)
+**Prerequisites**: Homework 1 & 3 (Git Fundamentals, Repository Operations & State Management)
 
 ---
 
