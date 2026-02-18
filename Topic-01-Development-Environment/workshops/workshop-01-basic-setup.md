@@ -252,43 +252,11 @@ git config --help
 
 ---
 
-## Part 5: Editor Configuration (Optional)
 
-### Step 11: Configure Default Editor
-
-**Instructions:**
-Choose one of the following based on your preferred editor:
-
-```bash
-# Visual Studio Code
-git config --global core.editor "code --wait"
-
-# Sublime Text
-git config --global core.editor "subl --wait"
-
-# Vim
-git config --global core.editor "vim"
-
-# Nano
-git config --global core.editor "nano"
-
-# Notepad++ (Windows)
-git config --global core.editor "'C:/Program Files/Notepad++/notepad++.exe' -multiInst -notabbar -nosession -noPlugin"
-```
-
-### Step 12: Test Editor Configuration
-
-**Instructions:**
-```bash
-# This should open your configured editor
-git config --global -e
-```
-
----
 
 ## Part 6: Cleanup
 
-### Step 13: Remove Test Repository
+### Step 11: Remove Test Repository
 
 **Instructions:**
 ```bash
