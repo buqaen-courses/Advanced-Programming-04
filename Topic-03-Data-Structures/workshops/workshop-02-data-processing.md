@@ -738,6 +738,6 @@ if __name__ == "__main__":
 
 ---
 
-**Workshop Version**: 1.0  
-**Last Updated**: February 2026  
+**Workshop Version**: 1.0
+**Last Updated**: February 2026
 **Estimated Completion Time**: 90 minutes

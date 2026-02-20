@@ -1,8 +1,8 @@
-# Workshop 2: Fetching and Processing User Data
+# Workshop 3: Advanced Data Processing and Error Handling
 
-**Section**: 2 - JSON Handling & API Integration (90 min)
-**Level**: Intermediate
-**Prerequisites**: Tutorial 2 (JSON & API Integration)
+**Section**: 8 - Dictionaries and Advanced Python Features (90 min)
+**Level**: Intermediate to Advanced
+**Prerequisites**: Tutorial 3 (Dictionaries and Advanced Python Features)
 
 ---
 

@@ -1,8 +1,8 @@
-# Tutorial 2: JSON Handling & API Integration
+# Tutorial 3: Dictionaries and Advanced Python Features
 
-**Section**: 2 - JSON Handling & API Integration (90 min)
-**Level**: Intermediate
-**Prerequisites**: Section 1 (Lists and Sets), basic Python knowledge
+**Section**: 8 - Dictionaries and Advanced Python Features (90 min)
+**Level**: Intermediate to Advanced
+**Prerequisites**: Tutorial 2 (Lists and Sets), basic Python knowledge
 
 ---
 

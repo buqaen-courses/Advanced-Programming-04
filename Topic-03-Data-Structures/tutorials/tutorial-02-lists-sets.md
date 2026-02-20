@@ -552,6 +552,6 @@ Try these exercises to reinforce your understanding:
 
 ---
 
-**Tutorial Version**: 1.0  
-**Last Updated**: February 2026  
+**Tutorial Version**: 1.0
+**Last Updated**: February 2026
 **Estimated Reading Time**: 45 minutes
