@@ -1,321 +1,299 @@
-# Homework 1 — Practical Introduction to Git and Local Version Control
+# Homework 1: Git Basics & Repository Management
 
-*(Warm-up exercise — no submission required)*
+## Learning Objectives
+By completing this homework, you will be able to:
+- Create and manage local Git repositories
+- Understand Git's working directory, staging area, and repository states
+- Use basic Git commands (init, add, commit, status, log)
+- Create organized project structures with multiple folders
+- Manage files and folders through Git's lifecycle
 
-**Estimated duration:** 90–120 minutes
-**Level:** Absolute beginner
-**Purpose:** To gain hands-on understanding of how Git tracks, stores, and manages file changes locally.
+## Prerequisites
+- Git installed on your system
+- Basic understanding of command line operations
+- Text editor for creating files
 
----
+## Instructions
 
-## 1. Overall Objective
+### Part 1: Project Setup and Git Initialization
 
-In this exercise, you will learn — through direct practice — how to:
+1. **Create a new folder for your homework project:**
+   ```bash
+   # Create a folder named after your student ID
+   mkdir your-student-id-git-basics
+   cd your-student-id-git-basics
+   ```
 
-* Understand what Git is and why it is used
-* Put a project under version control
-* Track changes made to files
-* Create and store project versions (commits)
-* View project history
-* Safely experiment and revert changes
+2. **Initialize a Git repository:**
+   ```bash
+   git init
+   ```
 
-This exercise is designed purely for familiarization and practical understanding of Git fundamentals.
+3. **Check the repository status:**
+   ```bash
+   git status
+   ```
+   You should see that you're on the `main` branch and have an empty repository.
 
----
+### Part 2: Create Project Structure
 
-## 2. What Does Git Actually Do?
+Create the following folder structure with files:
 
-In software development, files change constantly.
-Without version control:
-
-* You cannot easily track what changed
-* Returning to previous versions is difficult
-* Collaboration becomes complicated
-
-Git solves these problems.
-
-Git records **snapshots of your entire project** at specific moments in time.
-Each snapshot represents an official version of the project that can be revisited later.
-
-As a result:
-
-* Changes are traceable
-* Previous versions are preserved
-* Safe experimentation becomes possible
-
----
-
-## 3. Installing and Preparing Git
-
-### Step 1 — Install Git
-
-Visit:
-
-[https://git-scm.com/downloads](https://git-scm.com/downloads)
-
-Download and install the version for your operating system.
-If unsure about installation options, accept the default settings.
-
----
-
-### Step 2 — Verify Installation
-
-Open a terminal or command prompt and run:
-
-```bash
-git --version
+```
+your-student-id-git-basics/
+├── README.md (main project README)
+├── hw1/
+│   ├── hello.py
+│   ├── calculator.py
+│   └── README.md
+└── hw2/
+    ├── data_processor.py
+    ├── file_manager.py
+    └── README.md
 ```
 
-If a version number appears, Git is installed successfully.
+### Part 3: Create Main Project README
 
----
+Create a `README.md` file in the root directory with the following content:
 
-## 4. Configure Your Identity
+```markdown
+# Student Git Basics Project
 
-Git records who makes each change.
-You must configure your name and email once.
+**Student Information:**
+- Student ID: [Your Student ID]
+- Name: [Your Full Name]
+- Family: [Your Family Name]
 
-```bash
-git config --global user.name "Your Name"
-git config --global user.email "email@example.com"
+## Table of Contents
+
+### Homework 1: Basic Programming
+- Location: `hw1/`
+- Files: Basic Python programs
+- Description: Simple Python scripts demonstrating basic programming concepts
+
+### Homework 2: Data Processing
+- Location: `hw2/`
+- Files: Data manipulation programs
+- Description: Python scripts for processing and managing data files
+
+## Project Structure
+```
+your-student-id-git-basics/
+├── README.md           # This file - project overview
+├── hw1/               # Homework 1 files
+│   ├── hello.py       # Basic greeting program
+│   ├── calculator.py  # Simple calculator
+│   └── README.md      # HW1 documentation
+└── hw2/               # Homework 2 files
+    ├── data_processor.py    # Data processing utilities
+    ├── file_manager.py      # File management tools
+    └── README.md            # HW2 documentation
 ```
 
-These settings apply to all your projects.
-
-To verify:
-
-```bash
-git config --global --list
+## Git Workflow Used
+This project demonstrates basic Git operations:
+- Repository initialization
+- Sequential file additions and commits
+- Organized project structure
+- Documentation for each component
 ```
 
----
+### Part 4: Create Homework 1 Files
 
-## 5. Create Your First Git Project
+1. **Create the hw1 folder:**
+   ```bash
+   mkdir hw1
+   ```
 
-### Step 1 — Create a Project Folder
+2. **Create hw1/hello.py:**
+   ```python
+   # Homework 1: Basic Python Program
+   # Student ID: [Your Student ID]
 
-```bash
-mkdir my-first-git-project
-cd my-first-git-project
+   print("Hello, World!")
+   print("This is a simple Python program for Git basics homework.")
+   ```
+
+3. **Create hw1/calculator.py:**
+   ```python
+   # Simple Calculator Program
+   # Student ID: [Your Student ID]
+
+   print("=== Simple Calculator ===")
+   print("2 + 3 =", 2 + 3)
+   print("10 - 4 =", 10 - 4)
+   print("5 * 6 =", 5 * 6)
+   ```
+
+4. **Create hw1/README.md:**
+   ```markdown
+   # Homework 1: Basic Python Programming
+
+   ## Description
+   This homework contains simple Python programs for practicing Git operations.
+
+   ## Files
+   - `hello.py`: A basic "Hello World" program
+   - `calculator.py`: Simple arithmetic calculations
+
+   ## Learning Outcomes
+   - Understanding Python file structure
+   - Basic print statements
+   - Simple arithmetic operations
+
+   ## Usage
+   Run each program using Python:
+   ```bash
+   python hello.py
+   python calculator.py
+   ```
+   ```
+
+### Part 5: Git Operations for Homework 1
+
+1. **Add and commit the main README:**
+   ```bash
+   git add README.md
+   git commit -m "Add main project README with student info and table of contents"
+   ```
+
+2. **Create and add hw1 folder:**
+   ```bash
+   git add hw1/
+   git commit -m "Add homework 1 folder with basic Python programs"
+   ```
+
+3. **Check the commit history:**
+   ```bash
+   git log --oneline
+   ```
+   You should see two commits.
+
+### Part 6: Create Homework 2 Files
+
+1. **Create the hw2 folder:**
+   ```bash
+   mkdir hw2
+   ```
+
+2. **Create hw2/data_processor.py:**
+   ```python
+   # Data Processor Program
+   # Student ID: [Your Student ID]
+
+   print("=== Data Processor ===")
+
+   # Simple data processing
+   numbers = [1, 2, 3, 4, 5]
+   total = sum(numbers)
+   average = total / len(numbers)
+
+   print(f"Numbers: {numbers}")
+   print(f"Total: {total}")
+   print(f"Average: {average}")
+   ```
+
+3. **Create hw2/file_manager.py:**
+   ```python
+   # File Manager Program
+   # Student ID: [Your Student ID]
+
+   print("=== File Manager ===")
+   print("This program demonstrates basic file operations.")
+   print("Current directory contains Python files for Git homework.")
+   ```
+
+4. **Create hw2/README.md:**
+   ```markdown
+   # Homework 2: Data Processing and File Management
+
+   ## Description
+   This homework contains simple Python programs for practicing Git operations.
+
+   ## Files
+   - `data_processor.py`: Basic data calculations
+   - `file_manager.py`: Simple file management demonstration
+
+   ## Learning Outcomes
+   - Understanding Python file organization
+   - Basic data manipulation
+   - Simple print statements
+
+   ## Usage
+   Run each program using Python:
+   ```bash
+   python data_processor.py
+   python file_manager.py
+   ```
+   ```
+
+### Part 7: Final Git Operations
+
+1. **Add and commit homework 2:**
+   ```bash
+   git add hw2/
+   git commit -m "Add homework 2 folder with data processing programs"
+   ```
+
+2. **Update the main README with final project information:**
+   Edit the main README.md to add a section about the Git workflow used. Then commit this change:
+   ```bash
+   git add README.md
+   git commit -m "Update main README with complete project documentation"
+   ```
+
+3. **Check final repository status:**
+   ```bash
+   git status
+   git log --oneline
+   ```
+
+## Expected Repository History
+
+After completing all steps, your `git log --oneline` should show something like:
+```
+3e4f5a6 Update main README with complete project documentation
+2b8c9d1 Add homework 2 folder with data processing programs
+1a7b2c3 Add homework 1 folder with basic Python programs
+9f8e7d6 Add main project README with student info and table of contents
 ```
 
----
+## Submission Requirements
 
-### Step 2 — Initialize Git
+1. **Repository Structure**: Ensure your folder structure matches the specification
+2. **Git History**: Demonstrate sequential commits as shown above
+3. **File Content**: All Python files should be functional and well-documented
+4. **README Files**: All README files should contain appropriate content
+5. **Student Information**: Update all files with your actual student information
 
+## Assessment Criteria
+
+- [ ] Correct folder structure created
+- [ ] Git repository properly initialized
+- [ ] Sequential commits demonstrate Git workflow understanding
+- [ ] Python files are syntactically correct and functional
+- [ ] README files contain appropriate documentation
+- [ ] Student information properly included
+- [ ] Git history shows logical progression of work
+
+## Troubleshooting
+
+### Common Issues:
+1. **"fatal: not a git repository"**: Make sure you're in the correct directory and have run `git init`
+2. **"nothing to commit"**: Check `git status` to see what files need to be added
+3. **Python syntax errors**: Test your Python files before committing
+
+### Useful Commands:
 ```bash
-git init
-```
-
-This activates Git in the current directory and creates a hidden `.git` folder.
-
-This folder contains:
-
-* Project history
-* Configuration
-* Branch information
-* Internal Git data
-
-Deleting this folder removes all Git history.
-
----
-
-## 6. Create a File and Check Project Status
-
-Create a file:
-
-```bash
-echo "Hello Git" > README.md
-```
-
-Check project status:
-
-```bash
+# Check current status
 git status
-```
 
-Git reports that a new file exists but is not yet tracked.
-
-This means:
-
-**Git sees the file but is not managing it yet.**
-
----
-
-## 7. Add Changes to the Staging Area
-
-Git records changes in two steps:
-
-1. Select changes
-2. Permanently record them
-
-Step one:
-
-```bash
-git add README.md
-```
-
-Git is now ready to record this file.
-
----
-
-## 8. Create Your First Commit
-
-Step two:
-
-```bash
-git commit -m "Initial project version"
-```
-
-A permanent version of the project is now stored.
-
-Each commit includes:
-
-* File states
-* Timestamp
-* Author
-* Message
-
----
-
-## 9. View Project History
-
-```bash
-git log
-```
-
-Or a shorter version:
-
-```bash
+# See commit history
 git log --oneline
+
+# See what changed in each commit
+git show <commit-hash>
+
+# Unstage files if needed
+git reset HEAD <file>
 ```
-
-Each entry represents one project version.
-
----
-
-## 10. Modify a File and Create a New Version
-
-Edit the file:
-
-```bash
-echo "Version 2" >> README.md
-```
-
-View changes:
-
-```bash
-git diff
-```
-
-Save the new version:
-
-```bash
-git add README.md
-git commit -m "Update README"
-```
-
-Your project now has multiple versions.
-
----
-
-## 11. Git’s Three-Area Structure
-
-This is a fundamental concept.
-
-Git has three main areas:
-
-### 1. Working Directory
-
-Where you edit files.
-
-### 2. Staging Area
-
-Where selected changes are prepared for commit.
-
-### 3. Repository
-
-Where committed versions are permanently stored.
-
-Workflow:
-
-Edit → Stage → Commit
-
----
-
-## 12. Experiment and Revert Changes
-
-Make a temporary change:
-
-```bash
-echo "temporary change" >> README.md
-```
-
-Revert it:
-
-```bash
-git restore README.md
-```
-
-The file returns to the last committed version.
-
-This is one of Git’s most important capabilities.
-
----
-
-## 13. View Complete Version History
-
-```bash
-git log --oneline
-```
-
-You can observe the project’s evolution over time.
-
----
-
-## 14. Conceptual Summary
-
-In this exercise you:
-
-* Installed Git
-* Created a repository
-* Created and modified files
-* Saved versions
-* Viewed history
-* Reverted experimental changes
-
-You now understand the basic idea of version control.
-
----
-
-## 15. Git Commands Used in This Exercise
-
-| Command                          | Purpose               | Simple Explanation             |
-| -------------------------------- | --------------------- | ------------------------------ |
-| `git --version`                  | Check installation    | Displays installed Git version |
-| `git config --global user.name`  | Set username          | Identifies the author          |
-| `git config --global user.email` | Set email             | Records author email           |
-| `git config --global --list`     | View settings         | Shows current configuration    |
-| `git init`                       | Initialize repository | Activates Git in a folder      |
-| `git status`                     | Check status          | Shows file tracking state      |
-| `git add <file>`                 | Stage file            | Select changes for commit      |
-| `git add .`                      | Stage all changes     | Add everything                 |
-| `git commit -m "message"`        | Save version          | Record permanent snapshot      |
-| `git log`                        | View history          | Full commit history            |
-| `git log --oneline`              | Short history         | Compact history view           |
-| `git diff`                       | Show changes          | Compare with last commit       |
-| `git restore <file>`             | Undo changes          | Revert file to last commit     |
-
----
-
-## 16. Final Note
-
-This exercise is intended solely for familiarization.
-Its purpose is to help you understand how Git:
-
-* Tracks changes
-* Stores versions
-* Enables safe rollback
-
-These fundamentals form the foundation for advanced Git concepts such as branching, merging, and collaboration.
-

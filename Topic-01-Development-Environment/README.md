@@ -65,11 +65,10 @@ Topic-01-Development-Environment/
 │   ├── workshop-05-branching.md        # Branching fundamentals workshop
 │   └── template/                       # Project template files
 ├── homeworks/                          # Independent practice exercises
-│   ├── homework-01-git-basics.md       # Basic Git exercises
-│   ├── homework-02-repository-management.md # Repository exercises
-│   ├── homework-03-git-states-files.md # Git states mastery
-│   ├── homework-04-branching.md        # Branching fundamentals
-│   └── homework-05-branching/          # Advanced branching (folder)
+│   ├── homework-01-git-basics.md       # Git basics with project structure
+│   ├── homework-01-git-basics-fa.md    # Persian version: Git basics
+│   ├── homework-02-github-operations.md # GitHub operations & PAT usage
+│   └── homework-02-github-operations-fa.md # Persian version: GitHub operations
 ├── resources/
 │   ├── cheatsheet.md                   # Git commands reference
 │   └── useful-links.md                 # Additional resources
