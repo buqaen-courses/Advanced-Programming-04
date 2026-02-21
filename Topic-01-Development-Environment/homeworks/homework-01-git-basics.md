@@ -60,9 +60,9 @@ Create a `README.md` file in the root directory with the following content:
 # Student Git Basics Project
 
 **Student Information:**
-- Student ID: [Your Student ID]
-- Name: [Your Full Name]
-- Family: [Your Family Name]
+- Student ID: 810177028
+- Name: Mojtaba
+- Family: Banaie
 
 ## Table of Contents
 
@@ -77,18 +77,17 @@ Create a `README.md` file in the root directory with the following content:
 - Description: Python scripts for processing and managing data files
 
 ## Project Structure
-```
-your-student-id-git-basics/
-├── README.md           # This file - project overview
-├── hw1/               # Homework 1 files
-│   ├── hello.py       # Basic greeting program
-│   ├── calculator.py  # Simple calculator
-│   └── README.md      # HW1 documentation
-└── hw2/               # Homework 2 files
-    ├── data_processor.py    # Data processing utilities
-    ├── file_manager.py      # File management tools
-    └── README.md            # HW2 documentation
-```
+
+your-student-id-git-basics/ 
+├── README.md # This file - project overview 
+├── hw1/ # Homework 1 files 
+│ ├── hello.py # Basic greeting program 
+│ ├── calculator.py # Simple calculator 
+│ └── README.md # HW1 documentation 
+└── hw2/ # Homework 2 files 
+|  ├── data_processor.py # Data processing utilities 
+|  ├── file_manager.py # File management tools 
+|  └── README.md # HW2 documentation
 
 ## Git Workflow Used
 This project demonstrates basic Git operations:
