@@ -1,0 +1,79 @@
+---
+description: Ensure course content is simple and focused on basics for Semester 2 computer engineering students
+globs: Topic-03-Data-Structures/**/*.md
+alwaysApply: true
+---
+
+# Course Content Simplification Guidelines
+
+## Target Audience
+This course is designed for **Semester 2 Computer Engineering students**. Content must be appropriate for beginners with basic programming knowledge (variables, loops, functions).
+
+## Content Principles
+
+### ✅ KEEP SIMPLE
+- Focus on **fundamental concepts** only
+- Use **short, clear examples** (5-15 lines maximum)
+- Avoid **lengthy code samples** that overwhelm students
+- Explain **one concept at a time**
+
+### ❌ AVOID COMPLEXITY
+- No **advanced algorithms** or data structures
+- No **complex nested operations**
+- No **performance optimization discussions**
+- No **edge cases** or complex error handling
+- No **library-specific features** (NumPy, etc.)
+
+### Content Structure
+Each tutorial/workshop section should follow:
+1. **Simple explanation** (2-3 sentences)
+2. **Basic code example** (5-10 lines)
+3. **Quick practice exercise**
+4. Move to next concept
+
+## Examples of Appropriate Content
+
+### ✅ GOOD: Basic Array Creation
+```python
+# Create a simple list
+numbers = [1, 2, 3, 4, 5]
+print(numbers)
+```
+
+### ❌ BAD: Complex List Comprehensions
+```python
+# This is too complex for beginners
+squares = [x**2 for x in range(10) if x % 2 == 0]
+matrix = [[i*4 + j for j in range(4)] for i in range(4)]
+```
+
+## Tutorial Length Limits
+- **Maximum 500 lines** per tutorial
+- **Maximum 30 minutes** reading time
+- **Focus on 3-5 key concepts** per tutorial
+
+## Workshop Guidelines
+- **Practical exercises** only
+- **Step-by-step instructions**
+- **No complex problems**
+- **Immediate feedback** opportunities
+
+## Quality Checks
+- Can a beginner understand each concept in **5 minutes**?
+- Is the example code **immediately runnable**?
+- Does it build confidence rather than confusion?
+- Can students focus on the main usage without getting lost?
+
+## Learning Objectives
+- Students should **understand basic usage**
+- Students should be able to **write simple code**
+- Students should **feel confident** with fundamentals
+- Students should **want to learn more** (not feel overwhelmed)
+
+## Review Process
+Before finalizing any tutorial or workshop:
+1. Read through with fresh eyes
+2. Ask: "Would this confuse a beginner?"
+3. Simplify any complex sections
+4. Test examples work immediately
+5. Ensure logical progression from simple to slightly more complex

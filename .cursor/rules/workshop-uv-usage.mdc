@@ -1,0 +1,35 @@
+---
+description: Use UV for virtual environment management in workshops
+globs: **/workshops/**/*.md
+alwaysApply: false
+---
+
+# UV Virtual Environment Usage in Workshops
+
+## Overview
+All workshop environments should use UV for virtual environment management instead of traditional `python -m venv`.
+
+## Setup Instructions
+
+When setting up workshop environments, always use UV:
+
+```bash
+# ✅ CORRECT: Use UV to create virtual environment
+uv venv
+# Windows: .venv\Scripts\activate
+# macOS/Linux: source .venv/bin/activate
+
+# ❌ INCORRECT: Don't use traditional venv
+# python -m venv venv
+# venv\Scripts\activate
+```
+
+## Benefits of UV
+- **Faster**: 10-100x faster than pip
+- **Integrated**: Handles projects, dependencies, and environments in one tool
+- **Secure**: Verifies package integrity
+- **Reproducible**: Lock files ensure consistent installations
+- **Modern**: Designed for contemporary Python development
+
+## Why This Matters
+UV provides a superior development experience with better performance and reliability. All workshops should demonstrate modern Python development practices.
