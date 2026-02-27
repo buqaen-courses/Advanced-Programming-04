@@ -1,14 +1,14 @@
-# Module 3: Python Data Structures & Arrays/Matrices
+# Module 3: Python Data Structures
 
-**Sections**: 6-8 (3 sections × 90 minutes each = 4.5 hours)
-**Target Audience**: Computer Engineering Students
+**Sections**: 5-9 (5 tutorials × 30 minutes each = 2.5 hours)
+**Target Audience**: Semester 2 Computer Engineering Students
 **Prerequisites**: Basic Python programming knowledge (variables, loops, functions)
 
 ---
 
 ## 📋 Module Overview
 
-This module provides a comprehensive foundation in Python data structures, from basic collections to advanced array and matrix operations. You'll master list and set operations, JSON processing, HTTP API interactions, and numerical computing with arrays and matrices - skills essential for modern Python development and data science.
+This module provides a foundation in Python data structures, from basic arrays and lists to dictionaries and modern Python features. You'll learn essential data structure operations that form the building blocks of Python programming.
 
 ---
 
@@ -16,43 +16,53 @@ This module provides a comprehensive foundation in Python data structures, from 
 
 By the end of this module, students will be able to:
 
-1. **Work with Arrays**: Implement efficient array algorithms and operations
-2. **Perform Matrix Operations**: Execute matrix arithmetic, transformations, and analysis
-3. **Apply Computational Algorithms**: Use arrays and matrices to solve real-world problems
-4. **Master List Operations**: Add, remove, sort, filter, and transform list data efficiently
-5. **Use List Comprehensions**: Write concise list creation and transformation code
-6. **Understand Set Operations**: Use union, intersection, and difference operations for data processing
-7. **Work with Dictionaries**: Perform CRUD operations on Python dictionaries
-8. **Handle JSON Data**: Read, write, and manipulate JSON files and API responses
-9. **Use Advanced Python Features**: Apply match statements, error handling, and modern Python capabilities
+1. **Create and use arrays** with basic operations
+2. **Work with lists and sets** for data collections
+3. **Use dictionaries** for key-value data storage
+4. **Handle JSON data** with basic conversion
+5. **Apply match statements** for value checking
 
 ---
 
 ## 📚 Module Structure
 
-### **Section 6: Arrays and Matrices** (90 min)
-**Topics**: Array algorithms, matrix operations, search/sort algorithms, practical applications
+### **Tutorial 0: Python Type Hints Basics** (30 min)
+**Topics**: Basic type hints for variables and functions
 
 **Materials**:
-- **Tutorial**: Arrays and matrices operations guide
-- **Workshop**: Implementing array and matrix algorithms
-- **Homework**: Building computational applications with arrays and matrices
+- **Tutorial**: Introduction to Python type annotations
 
-### **Section 7: Working with Lists and Sets** (90 min)
-**Topics**: List operations, set operations, list comprehensions, performance considerations
+### **Tutorial 1: Arrays and Matrices** (30 min)
+**Topics**: Array creation, access, modification, basic matrix operations
 
 **Materials**:
-- **Tutorial**: Comprehensive guide to list and set operations
-- **Workshop**: Hands-on data processing utilities
-- **Homework**: Independent data manipulation functions
+- **Tutorial**: Arrays and matrices fundamentals
+- **Workshop**: Basic array and matrix exercises
+- **Homework**: Simple array and matrix problems
 
-### **Section 8: Dictionaries and Advanced Python Features** (90 min)
-**Topics**: Dictionary operations, JSON handling, match statements, error handling
+### **Tutorial 2: Lists and Sets** (30 min)
+**Topics**: List operations, set operations, basic data collections
 
 **Materials**:
-- **Tutorial**: Dictionaries and advanced Python features guide
-- **Workshop**: Advanced data processing and error handling
-- **Homework**: Building applications with dictionaries and advanced features
+- **Tutorial**: Lists and sets fundamentals
+- **Workshop**: List and set practice exercises
+- **Homework**: Basic list and set problems
+
+### **Tutorial 3: Dictionaries and JSON** (30 min)
+**Topics**: Dictionary operations, JSON conversion, data storage
+
+**Materials**:
+- **Tutorial**: Dictionaries and JSON basics
+- **Workshop**: Dictionary and JSON exercises
+- **Homework**: Dictionary and JSON practice
+
+### **Tutorial 4: Match Statement** (20 min)
+**Topics**: Basic pattern matching, value checking with match
+
+**Materials**:
+- **Tutorial**: Match statement fundamentals
+- **Workshop**: Match statement practice
+- **Homework**: Match statement applications
 
 ---
 
@@ -60,25 +70,25 @@ By the end of this module, students will be able to:
 
 ```
 Topic-03-Data-Structures/
-├── README.md                    # This file - Module overview
+├── README.md                           # This file - Module overview
 ├── tutorials/
-│   ├── tutorial-01-arrays-matrices.md    # Section 6 tutorial
-│   ├── tutorial-02-lists-sets.md         # Section 7 tutorial
-│   └── tutorial-03-dictionaries-advanced.md # Section 8 tutorial
+│   ├── tutorial-00-typing-systems.md   # Tutorial 0: Type hints
+│   ├── tutorial-01-arrays-matrices.md  # Tutorial 1: Arrays & matrices
+│   ├── tutorial-02-lists-sets.md       # Tutorial 2: Lists & sets
+│   ├── tutorial-03-dictionaries-json.md # Tutorial 3: Dictionaries & JSON
+│   └── tutorial-04-match-statement.md  # Tutorial 4: Match statement
 ├── workshops/
-│   ├── workshop-01-arrays-matrices.md    # Section 6 workshop
-│   ├── workshop-02-data-processing.md    # Section 7 workshop
-│   └── workshop-03-advanced-data-processing.md # Section 8 workshop
+│   ├── workshop-01-arrays-matrices.md  # Tutorial 1 workshop
+│   ├── workshop-02-lists-sets.md       # Tutorial 2 workshop
+│   ├── workshop-03-dictionaries-json.md # Tutorial 3 workshop
+│   └── workshop-04-match-statement.md  # Tutorial 4 workshop
 ├── homeworks/
-│   ├── homework-01-arrays-matrices.md    # Section 6 homework
-│   ├── homework-02-lists-sets.md         # Section 7 homework
-│   └── homework-03-dictionaries-advanced.md # Section 8 homework
-├── resources/
-│   ├── cheatsheet.md            # Data structures reference
-│   ├── useful-links.md          # Python data structures resources
-│   └── api-examples.md          # Common API patterns
-└── installation/
-    └── requests-setup.md        # Installing requests library
+│   ├── homework-01-arrays-matrices.md  # Tutorial 1 homework
+│   ├── homework-02-lists-sets.md       # Tutorial 2 homework
+│   ├── homework-03-dictionaries-json.md # Tutorial 3 homework
+│   └── homework-04-match-statement.md  # Tutorial 4 homework
+└── resources/
+    └── useful-links.md                 # Python data structures resources
 ```
 
 ---
@@ -87,13 +97,11 @@ Topic-03-Data-Structures/
 
 ### Required Knowledge
 - Basic Python syntax (variables, data types, loops, functions)
-- Understanding of basic data structures (what are lists, dictionaries)
-- Command line familiarity
+- Understanding of basic programming concepts
 - Text editor or IDE setup
 
 ### Environment Setup
 - Python 3.8+ installed
-- Basic understanding of pip for package installation
 - UV package manager (from Module 2)
 
 ### Previous Modules
@@ -104,23 +112,24 @@ Topic-03-Data-Structures/
 
 ## 📈 Progression Path
 
-### **Week 1: Section 6 - Arrays & Matrices**
-1. **Tutorial**: Array operations and matrix fundamentals
-2. **Tutorial**: Search algorithms and matrix transformations
-3. **Workshop**: Implement array and matrix algorithms
-4. **Homework**: Build computational applications with arrays and matrices
+### **Week 1: Basic Data Structures**
+1. **Tutorial 0**: Learn about Python type hints
+2. **Tutorial 1**: Master arrays and matrices basics
+3. **Workshop 1**: Practice array and matrix operations
+4. **Homework 1**: Simple array and matrix problems
 
-### **Week 2: Section 7 - Lists and Sets**
-1. **Tutorial**: Learn list operations (add/remove/sort/filter)
-2. **Tutorial**: Master set operations and list comprehensions
-3. **Workshop**: Build practical data processing utilities
-4. **Homework**: Implement data manipulation functions
+### **Week 2: Collections and Storage**
+1. **Tutorial 2**: Learn list and set operations
+2. **Workshop 2**: Practice with lists and sets
+3. **Homework 2**: Basic list and set problems
+4. **Tutorial 3**: Understand dictionaries and JSON
+5. **Workshop 3**: Dictionary and JSON exercises
+6. **Homework 3**: Dictionary and JSON practice
 
-### **Week 3: Section 8 - Dictionaries & Advanced Python**
-1. **Tutorial**: Dictionary operations and JSON handling
-2. **Tutorial**: Match statements and error handling
-3. **Workshop**: Advanced data processing and validation
-4. **Homework**: Build applications with dictionaries and advanced features
+### **Week 3: Modern Python Features**
+1. **Tutorial 4**: Learn match statement basics
+2. **Workshop 4**: Match statement practice
+3. **Homework 4**: Match statement applications
 
 ---
 
@@ -128,19 +137,19 @@ Topic-03-Data-Structures/
 
 ### **Formative Assessment**
 - **Workshop Participation**: Active coding during hands-on sessions
-- **Tutorial Comprehension**: Understanding of concepts and examples
-- **Code Review**: Best practices in data manipulation
+- **Tutorial Comprehension**: Understanding of basic concepts
+- **Code Quality**: Clear, working code
 
 ### **Summative Assessment**
-- **Homework 1**: Arrays and matrices operations (35% of module grade)
-- **Homework 2**: Lists and sets operations (30% of module grade)
-- **Homework 3**: Dictionaries and advanced Python features (35% of module grade)
+- **Homework 1**: Arrays and matrices (25% of module grade)
+- **Homework 2**: Lists and sets (25% of module grade)
+- **Homework 3**: Dictionaries and JSON (25% of module grade)
+- **Homework 4**: Match statement (25% of module grade)
 
 ### **Evaluation Criteria**
 - **Functionality**: Code works as specified
-- **Code Quality**: Clean, readable, well-commented code
-- **Best Practices**: Proper use of Python idioms and data structures
-- **Error Handling**: Appropriate error handling and edge cases
+- **Code Quality**: Clean, readable code
+- **Understanding**: Correct use of data structures
 
 ---
 
@@ -148,20 +157,15 @@ Topic-03-Data-Structures/
 
 ### **Core Python Features**
 - Built-in data structures (lists, sets, dictionaries)
-- List/set comprehensions and advanced operations
-- JSON module and data serialization
-- File I/O operations
-- Array and matrix algorithms
-- Search and sort algorithms
-
-### **External Libraries**
-- **requests**: HTTP library for API interactions
-- **json**: Built-in JSON processing (covered in tutorials)
+- Basic array and matrix operations
+- JSON module for data conversion
+- Match statement for value checking
+- Type hints for code clarity
 
 ### **Development Tools**
 - Python 3.8+
 - UV package manager
-- Any text editor or IDE (VS Code recommended)
+- Any text editor or IDE
 
 ---
 
@@ -169,11 +173,10 @@ Topic-03-Data-Structures/
 
 After completing this module, you'll be ready for:
 
-- **Module 4**: Object-Oriented Programming (using data structures in classes)
-- **Module 5**: NumPy and pandas (advanced numerical computing with arrays)
-- **Module 7**: FastAPI development (building APIs with the skills learned here)
-- **Module 8**: Web scraping (processing scraped data as JSON)
-- **Data Science Track**: Machine learning with arrays and matrices
+- **Module 4**: Object-Oriented Programming
+- **Module 5**: Advanced data processing with NumPy and pandas
+- **Web Development**: Building applications with data structures
+- **Data Science**: Working with structured data
 
 ---
 
@@ -181,28 +184,25 @@ After completing this module, you'll be ready for:
 
 ### **Getting Help**
 - Review tutorial examples and explanations
-- Check workshop solutions for guidance
-- Use resources/cheatsheet.md for quick reference
-- Ask questions during workshop sessions
+- Practice with workshop exercises
+- Check resources for additional guidance
 
 ### **Additional Resources**
 - [Python Data Structures Documentation](https://docs.python.org/3/tutorial/datastructures.html)
-- [JSON Official Specification](https://www.json.org/json-en.html)
-- [requests Library Documentation](https://requests.readthedocs.io/)
+- [Python Lists and Tuples](https://docs.python.org/3/tutorial/datastructures.html#more-on-lists)
+- [Python Dictionaries](https://docs.python.org/3/tutorial/datastructures.html#dictionaries)
 
 ---
 
 ## 📝 Module Notes
 
-- **Logical Progression**: Starts with computational foundations (arrays/matrices), then data structures (lists/sets), finally advanced features (dictionaries/JSON/error handling)
-- **Practical Focus**: Emphasis on real-world applications and problem-solving
-- **Performance Awareness**: Understanding algorithm complexity and data structure selection
-- **Modern Python**: Coverage of contemporary Python features (match statements, comprehensions, error handling)
-- **Computational Thinking**: Building algorithmic problem-solving skills
-- **Progressive Difficulty**: From basic operations to advanced patterns and error handling
+- **Beginner-Friendly**: Designed for Semester 2 students with basic programming knowledge
+- **Progressive Learning**: Starts with simple concepts and builds gradually
+- **Practical Focus**: Emphasis on understanding and using data structures correctly
+- **Confidence Building**: Each tutorial builds coding confidence without overwhelming complexity
 
 ---
 
-**Module Version**: 1.0  
-**Last Updated**: February 2026  
-**Estimated Completion Time**: 6-8 hours (including homework)
+**Module Version**: 2.0 - Simplified
+**Last Updated**: February 2026
+**Estimated Completion Time**: 2.5 hours (including homework)
