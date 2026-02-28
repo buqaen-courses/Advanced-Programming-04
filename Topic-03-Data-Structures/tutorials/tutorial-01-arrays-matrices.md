@@ -104,6 +104,29 @@ print(numbers[::2])  # [10, 30, 50]
 print(numbers[1::2])  # [20, 40]
 print(numbers[::-1])  # [50, 40, 30, 20, 10]
 print(numbers[:])  # [10, 20, 30, 40, 50] (copy of the entire list)
+
+
+
+numbers.append(60)  # Add 60 to the end of the list
+print(numbers)  # Output: [10, 20, 30, 40, 50, 60]
+
+numbers.insert(2, 25)  # Insert 25 at index 2   
+print(numbers)  # Output: [10, 20, 25, 30, 40, 50, 60]  
+
+numbers.remove(40)  # Remove the first occurrence of 40
+print(numbers)  # Output: [10, 20, 25, 30, 50, 60]
+
+k=numbers.pop()  # Remove the last element (60)
+print(numbers)  # Output: [10, 20, 25, 30, 50]
+print(k)  # Output: 60
+
+numbers.clear()  # Remove all elements from the list
+numbers=[]  # Another way to clear the list
+
+numbers = [10, 20, 30]
+numbers.extend([40, 50])  # Add multiple elements to the end of the list
+print(numbers)  # Output: [10, 20, 30, 40, 50]
+
 ```
 
 ### Changing Array Elements
