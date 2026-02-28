@@ -72,8 +72,29 @@ first = numbers[0]  # 10
 # Get second element (position 1)
 second = numbers[1]  # 20
 
-# Get last element
+# Get last element using positive index
 last = numbers[4]  # 50
+
+# Get last element using negative index
+last_negative = numbers[-1]  # 50 (easier way!)
+```
+
+### Array Slicing
+
+```python
+numbers = [10, 20, 30, 40, 50]
+
+# Get first 3 elements [start:end]
+first_three = numbers[0:3]  # [10, 20, 30]
+
+# Get elements from index 2 to end
+from_index_2 = numbers[2:]  # [30, 40, 50]
+
+# Get last 2 elements
+last_two = numbers[-2:]  # [40, 50]
+
+# Get every other element [start:end:step]
+every_other = numbers[::2]  # [10, 30, 50]
 ```
 
 ### Changing Array Elements
