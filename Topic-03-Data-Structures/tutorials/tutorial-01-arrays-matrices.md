@@ -221,6 +221,34 @@ for row in matrix:
 print(first_column)  # [1, 4]
 ```
 
+### Functions with Type Hints
+
+```python
+# Function that works with arrays
+def sum_array(numbers: list) -> int:
+    """Calculate sum of numbers in array."""
+    total = 0
+    for num in numbers:
+        total += num
+    return total
+
+# Function that works with matrices
+def get_matrix_size(matrix: list) -> tuple:
+    """Return (rows, columns) of matrix."""
+    if not matrix:
+        return (0, 0)
+    return (len(matrix), len(matrix[0]))
+
+# Usage
+numbers = [1, 2, 3, 4, 5]
+result = sum_array(numbers)
+print(f"Sum: {result}")  # Sum: 15
+
+grid = [[1, 2], [3, 4]]
+size = get_matrix_size(grid)
+print(f"Size: {size}")  # Size: (2, 2)
+```
+
 ---
 
 ## 🎯 Practice Exercises

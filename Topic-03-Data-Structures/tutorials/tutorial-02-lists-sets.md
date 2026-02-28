@@ -219,6 +219,39 @@ colors.update(["purple", "orange"])
 print(colors)  # {'red', 'green', 'blue', 'yellow', 'purple', 'orange'}
 ```
 
+### Functions with Type Hints
+
+```python
+# Function that works with lists
+def add_to_list(items: list, new_item: str) -> list:
+    """Add new item to list and return updated list."""
+    items.append(new_item)
+    return items
+
+# Function that works with sets
+def check_in_set(items: set, value: str) -> bool:
+    """Check if value exists in set."""
+    return value in items
+
+# Function that works with tuples
+def get_tuple_info(data: tuple) -> tuple:
+    """Return (length, first_item) of tuple."""
+    return (len(data), data[0] if data else None)
+
+# Usage
+fruits = ["apple", "banana"]
+fruits = add_to_list(fruits, "orange")
+print(fruits)  # ['apple', 'banana', 'orange']
+
+colors = {"red", "blue", "green"}
+has_red = check_in_set(colors, "red")
+print(has_red)  # True
+
+person = ("Alice", 25, "Engineer")
+info = get_tuple_info(person)
+print(info)  # (3, 'Alice')
+```
+
 ---
 
 ## 🎯 Practice Exercises
