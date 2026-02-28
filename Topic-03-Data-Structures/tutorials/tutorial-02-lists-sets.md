@@ -11,8 +11,9 @@
 By the end of this tutorial, you will be able to:
 
 1. **Create and use lists** (ordered collections)
-2. **Create and use sets** (unique collections)
-3. **Perform basic operations** on lists and sets
+2. **Create and use tuples** (immutable sequences)
+3. **Create and use sets** (unique collections)
+4. **Perform basic operations** on lists, tuples, and sets
 
 ---
 
@@ -20,8 +21,10 @@ By the end of this tutorial, you will be able to:
 
 1. [What are Lists?](#what-are-lists)
 2. [Using Lists](#using-lists)
-3. [What are Sets?](#what-are-sets)
-4. [Using Sets](#using-sets)
+3. [What are Tuples?](#what-are-tuples)
+4. [Using Tuples](#using-tuples)
+5. [What are Sets?](#what-are-sets)
+6. [Using Sets](#using-sets)
 
 ---
 
@@ -97,6 +100,80 @@ print(numbers)  # [100, 2, 3, 4, 5]
 
 ---
 
+## 🔸 What are Tuples?
+
+Tuples are ordered, immutable sequences. Once created, tuple items cannot be changed.
+
+### Creating Tuples
+
+```python
+# Empty tuple
+empty = ()
+
+# Tuple with elements
+numbers = (1, 2, 3, 4, 5)
+
+# Tuple with different data types
+person = ("Alice", 25, "New York")
+```
+
+### Using Tuples
+
+```python
+# Print the tuple
+print(numbers)  # (1, 2, 3, 4, 5)
+
+# Count items in tuple
+print(len(numbers))  # 5
+```
+
+---
+
+## 🔸 Using Tuples
+
+### Accessing Tuple Elements
+
+```python
+numbers = (10, 20, 30, 40, 50)
+
+# Get first element
+first = numbers[0]  # 10
+
+# Get last element
+last = numbers[-1]  # 50
+
+# Get second element
+second = numbers[1]  # 20
+```
+
+### Tuple Operations
+
+```python
+# Check if item exists
+numbers = (1, 2, 3, 4, 5)
+print(3 in numbers)  # True
+
+# Count occurrences
+print(numbers.count(2))  # 1
+
+# Find index
+print(numbers.index(4))  # 3
+```
+
+### Tuple Unpacking
+
+```python
+# Unpack tuple into variables
+person = ("Alice", 25, "New York")
+name, age, city = person
+
+print(name)  # Alice
+print(age)   # 25
+print(city)  # New York
+```
+
+---
+
 ## 🔸 What are Sets?
 
 Sets are collections that contain unique items. Sets do not allow duplicates and are unordered.
@@ -162,10 +239,12 @@ Create a set with numbers 1, 2, 3, then add 4 and 5 to it.
 
 ## 🎯 Key Takeaways
 
-1. **Lists** are ordered collections that can have duplicates
-2. **Sets** are unordered collections with unique items only
-3. Use **lists** when you need order and duplicates
-4. Use **sets** when you need unique items and fast checking
+1. **Lists** are ordered, mutable collections that can have duplicates
+2. **Tuples** are ordered, immutable sequences that cannot be changed
+3. **Sets** are unordered collections with unique items only
+4. Use **lists** when you need to modify data
+5. Use **tuples** for fixed data that shouldn't change
+6. Use **sets** when you need unique items and fast checking
 
 ---
 
