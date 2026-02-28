@@ -114,7 +114,7 @@ Create a set with numbers 1, 2, 3, 4, 5. Check if 3 is in the set and if 10 is i
 Create a function that takes a list of numbers and returns their sum.
 
 ```python
-def sum_list(numbers):
+def sum_list(numbers: list) -> int:
     # TODO: Calculate sum of all numbers in list
     pass
 
@@ -128,7 +128,7 @@ print(f"Sum: {result}")  # Should print 15
 Create a function that takes a list and returns a set of unique elements.
 
 ```python
-def get_unique(items):
+def get_unique(items: list) -> set:
     # TODO: Convert list to set to get unique elements
     pass
 
@@ -142,7 +142,7 @@ print(f"Unique: {unique}")  # Should print {1, 2, 3, 4}
 Create a function that counts how many items are in any list.
 
 ```python
-def count_items(my_list):
+def count_items(my_list: list) -> int:
     # TODO: Count items in list
     pass
 
@@ -156,7 +156,7 @@ print(f"Count: {count}")  # Should print 3
 Create two sets and find their common elements.
 
 ```python
-def find_common(set1, set2):
+def find_common(set1: set, set2: set) -> set:
     # TODO: Find intersection of two sets
     pass
 
