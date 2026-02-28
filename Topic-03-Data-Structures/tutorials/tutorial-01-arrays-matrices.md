@@ -96,13 +96,21 @@ last_two = numbers[-2:]  # [40, 50]
 # Get every other element [start:end:step]
 every_other = numbers[::2]  # [10, 30, 50]
 print(numbers[1:4])  # [20, 30, 40]
+
 print(numbers[:3])  # [10, 20, 30]
+
 print(numbers[2:])  # [30, 40, 50]
+
 print(numbers[-3:])  # [30, 40, 50]
+
 print(numbers[:-2])  # [10, 20, 30]
+
 print(numbers[::2])  # [10, 30, 50]
+
 print(numbers[1::2])  # [20, 40]
+
 print(numbers[::-1])  # [50, 40, 30, 20, 10]
+
 print(numbers[:])  # [10, 20, 30, 40, 50] (copy of the entire list)
 
 
