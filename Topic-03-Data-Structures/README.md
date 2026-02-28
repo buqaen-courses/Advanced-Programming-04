@@ -1,8 +1,14 @@
 # Module 3: Python Data Structures
 
-**Sections**: 5-9 (5 tutorials × 30 minutes each = 2.5 hours)
+**Sections**: 0-5 (6 tutorials × 20-30 minutes each = 3 hours)
 **Target Audience**: Semester 2 Computer Engineering Students
 **Prerequisites**: Basic Python programming knowledge (variables, loops, functions)
+
+---
+
+## 📋 Module Overview
+
+This module provides a foundation in Python data structures, from basic arrays and lists to dictionaries, JSON, and comprehensions. You'll learn essential data structure operations that form the building blocks of Python programming.
 
 ---
 
@@ -21,6 +27,7 @@ By the end of this module, students will be able to:
 3. **Use dictionaries** for key-value data storage
 4. **Handle JSON data** with basic conversion
 5. **Apply match statements** for value checking
+6. **Use comprehensions** for simple data transformations
 
 ---
 
@@ -64,6 +71,14 @@ By the end of this module, students will be able to:
 - **Workshop**: Match statement practice
 - **Homework**: Match statement applications
 
+### **Tutorial 5: List and Set Comprehensions** (25 min)
+**Topics**: Basic comprehensions, simple list/set creation
+
+**Materials**:
+- **Tutorial**: Comprehensions fundamentals
+- **Workshop**: Comprehensions practice
+- **Homework**: Comprehensions applications
+
 ---
 
 ## 📁 Materials Organization
@@ -76,17 +91,20 @@ Topic-03-Data-Structures/
 │   ├── tutorial-01-arrays-matrices.md  # Tutorial 1: Arrays & matrices
 │   ├── tutorial-02-lists-sets.md       # Tutorial 2: Lists & sets
 │   ├── tutorial-03-dictionaries-json.md # Tutorial 3: Dictionaries & JSON
-│   └── tutorial-04-match-statement.md  # Tutorial 4: Match statement
+│   ├── tutorial-04-match-statement.md  # Tutorial 4: Match statement
+│   └── tutorial-05-set-list-comprehensions.md # Tutorial 5: Comprehensions
 ├── workshops/
 │   ├── workshop-01-arrays-matrices.md  # Tutorial 1 workshop
 │   ├── workshop-02-lists-sets.md       # Tutorial 2 workshop
 │   ├── workshop-03-dictionaries-json.md # Tutorial 3 workshop
-│   └── workshop-04-match-statement.md  # Tutorial 4 workshop
+│   ├── workshop-04-match-statement.md  # Tutorial 4 workshop
+│   └── workshop-05-set-list-comprehensions.md # Tutorial 5 workshop
 ├── homeworks/
 │   ├── homework-01-arrays-matrices.md  # Tutorial 1 homework
 │   ├── homework-02-lists-sets.md       # Tutorial 2 homework
 │   ├── homework-03-dictionaries-json.md # Tutorial 3 homework
-│   └── homework-04-match-statement.md  # Tutorial 4 homework
+│   ├── homework-04-match-statement.md  # Tutorial 4 homework
+│   └── homework-05-set-list-comprehensions.md # Tutorial 5 homework
 └── resources/
     └── useful-links.md                 # Python data structures resources
 ```
@@ -131,6 +149,11 @@ Topic-03-Data-Structures/
 2. **Workshop 4**: Match statement practice
 3. **Homework 4**: Match statement applications
 
+### **Week 4: Data Processing Techniques**
+1. **Tutorial 5**: Learn list and set comprehensions
+2. **Workshop 5**: Comprehensions practice
+3. **Homework 5**: Comprehensions applications
+
 ---
 
 ## 🎯 Assessment Strategy
@@ -141,10 +164,11 @@ Topic-03-Data-Structures/
 - **Code Quality**: Clear, working code
 
 ### **Summative Assessment**
-- **Homework 1**: Arrays and matrices (25% of module grade)
-- **Homework 2**: Lists and sets (25% of module grade)
-- **Homework 3**: Dictionaries and JSON (25% of module grade)
-- **Homework 4**: Match statement (25% of module grade)
+- **Homework 1**: Arrays and matrices (20% of module grade)
+- **Homework 2**: Lists and sets (20% of module grade)
+- **Homework 3**: Dictionaries and JSON (20% of module grade)
+- **Homework 4**: Match statement (20% of module grade)
+- **Homework 5**: List and set comprehensions (20% of module grade)
 
 ### **Evaluation Criteria**
 - **Functionality**: Code works as specified
@@ -205,4 +229,4 @@ After completing this module, you'll be ready for:
 
 **Module Version**: 2.0 - Simplified
 **Last Updated**: February 2026
-**Estimated Completion Time**: 2.5 hours (including homework)
+**Estimated Completion Time**: 3 hours (including homework)

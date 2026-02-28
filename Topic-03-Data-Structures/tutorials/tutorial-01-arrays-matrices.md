@@ -222,6 +222,60 @@ cols = len(matrix[0])  # 3
 print(f"Matrix has {rows} rows and {cols} columns")
 ```
 
+### Array Processing with Loops
+
+```python
+numbers = [10, 20, 30, 40, 50]
+
+# Method 1: Iterate through each element
+print("Iterating through elements:")
+for num in numbers:
+    print(num)
+
+print()
+
+# Method 2: Iterate using index
+print("Iterating with index:")
+for i in range(len(numbers)):
+    print(f"Index {i}: {numbers[i]}")
+
+print()
+
+# Finding the maximum value
+max_value = numbers[0]  # Start with first element
+for num in numbers:
+    if num > max_value:
+        max_value = num
+print(f"Maximum value: {max_value}")
+
+print()
+
+# Finding the sum of all elements
+total = 0
+for num in numbers:
+    total += num
+print(f"Sum of all elements: {total}")
+
+print()
+
+# Counting elements greater than a value
+count = 0
+threshold = 25
+for num in numbers:
+    if num > threshold:
+        count += 1
+print(f"Elements greater than {threshold}: {count}")
+
+print()
+
+# Creating a new array with doubled values
+doubled = []
+for num in numbers:
+    doubled.append(num * 2)
+print(f"Original: {numbers}")
+print(f"Doubled: {doubled}")
+```
+
 ---
 
 ## 🔸 Using Matrices
