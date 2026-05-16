@@ -1,991 +1,651 @@
-# Workshop 1: Library Management System
+# Step‑by‑Step Workshop: Building a Persistent Library System with OOP
 
-**Section**: 1 - OOP Fundamentals (90 min)
-**Level**: Intermediate
-**Prerequisites**: Tutorial 1 (OOP Fundamentals)
-
----
-
-## 🎯 Workshop Objectives
-
-By the end of this workshop, you will:
-
-1. **Apply OOP Concepts**: Use classes, objects, and methods in practice
-2. **Design Class Relationships**: Create multiple classes that work together
-3. **Implement CRUD Operations**: Build Create, Read, Update, Delete functionality
-4. **Manage Object Collections**: Handle lists of objects and relationships
-5. **Practice Encapsulation**: Control access to object data through methods
+**Level**: Beginner  
+**Prerequisites**: Basic Python (variables, loops, lists, functions)  
+**Est. Time**: 2–3 hours (can be split over several sessions)
 
 ---
 
-## 📋 Workshop Structure
+## 🎯 Learning Objectives
 
-1. [Setup and Environment](#setup-and-environment)
-2. [Exercise 1: Book Class Implementation](#exercise-1-book-class-implementation)
-3. [Exercise 2: Member Class Design](#exercise-2-member-class-design)
-4. [Exercise 3: Library System Integration](#exercise-3-library-system-integration)
-5. [Exercise 4: Borrowing System](#exercise-4-borrowing-system)
-6. [Exercise 5: Advanced Features](#exercise-5-advanced-features)
-7. [Challenge Exercises](#challenge-exercises)
-8. [Solution Code](#solution-code)
+By the end of this workshop, you will be able to:
+
+1. Define simple classes (`Book`, `Member`) with attributes and methods.
+2. Use `if __name__ == '__main__'` to test your code.
+3. Store and retrieve data using **JSON** files.
+4. Build **Manager classes** that handle saving, loading, searching, updating, and deleting objects.
+5. Combine everything into a **Library** class that ties books and members together.
+
+You will work **step by step**, testing each new feature before moving to the next.
 
 ---
 
-## 🛠️ Setup and Environment
+## 📁 Project Setup
 
-### Create Workshop Directory
-
-```bash
-# Create workshop directory
-mkdir workshop-library-system
-cd workshop-library-system
-
-# Create Python files
-touch book.py member.py library.py main.py
-
-# Optional: Create virtual environment
-python -m venv venv
-# Windows: venv\Scripts\activate
-# macOS/Linux: source venv/bin/activate
-```
-
-### Project Structure
+Create a new folder. Inside it, create these empty Python files:
 
 ```
-workshop-library-system/
-├── book.py          # Book class implementation
-├── member.py        # Library member class
-├── library.py       # Main library management system
-├── main.py          # Demo and testing script
-└── README.md        # Documentation (optional)
+library_project/
+├── book.py
+├── member.py
+├── book_manager.py      (will be created later)
+├── member_manager.py    (will be created later)
+└── library.py           (will be created later)
 ```
+
+We will start with `book.py` and `member.py`, then gradually add the other files as we progress.
 
 ---
 
-## 📖 Exercise 1: Book Class Implementation
+# Step 1: Simple Classes Without Persistence
 
-**Goal**: Create a Book class with proper encapsulation and methods
+## 1.1 Create the `Book` Class
 
-### Task 1.1: Basic Book Class
-
-Create `book.py` with a Book class that has the following features:
+Open `book.py` and write:
 
 ```python
 class Book:
-    """Represents a book in the library system."""
+    """A simple Book class."""
+    def __init__(self, title, author, year=None):
+        self.title = title
+        self.author = author
+        self.year = year
 
-    def __init__(self, title, author, isbn, publication_year):
-        """Initialize a book with its basic information."""
-        # TODO: Initialize instance variables
-        # - title, author, isbn, publication_year
-        # - available (boolean, starts as True)
-        # - borrower_id (None initially)
-
-    def get_info(self):
-        """Return formatted book information."""
-        # TODO: Return a string with all book details
-
-    def is_available(self):
-        """Check if the book is available for borrowing."""
-        # TODO: Return availability status
-
-    def borrow_book(self, member_id):
-        """Mark book as borrowed by a member."""
-        # TODO: Set available to False and store member_id
-        # TODO: Handle case where book is already borrowed
-
-    def return_book(self):
-        """Mark book as returned."""
-        # TODO: Set available to True and clear borrower_id
-        # TODO: Handle case where book is not borrowed
+    def __repr__(self):
+        year_str = f" ({self.year})" if self.year else ""
+        return f"'{self.title}' by {self.author}{year_str}"
 ```
 
-**Test your Book class:**
-```python
-# Create some books
-book1 = Book("1984", "George Orwell", "978-0451524935", 1949)
-book2 = Book("To Kill a Mockingbird", "Harper Lee", "978-0061120084", 1960)
-
-print(book1.get_info())
-print(book2.is_available())  # Should be True
-
-# Test borrowing
-book1.borrow_book("M001")
-print(book1.is_available())  # Should be False
-
-book1.return_book()
-print(book1.is_available())  # Should be True
-```
-
-### Task 1.2: Book Collection Management
-
-Add methods to manage collections of books:
+Now add a test section at the bottom that creates an empty list, asks the user to enter books, and prints them:
 
 ```python
-class Book:
-    # ... (previous methods)
+if __name__ == "__main__":
+    books = []   # empty list to hold Book objects
 
-    @classmethod
-    def create_sample_books(cls):
-        """Create and return a list of sample books."""
-        # TODO: Create 5-6 sample books
-        # TODO: Return list of Book objects
+    while True:
+        print("\n--- Book Menu ---")
+        print("1. Add a book")
+        print("2. Show all books")
+        print("3. Exit")
+        choice = input("Choose: ")
 
-    @staticmethod
-    def validate_isbn(isbn):
-        """Validate ISBN format (basic check)."""
-        # TODO: Check if ISBN is a valid string format
-        # TODO: Return True/False
+        if choice == "1":
+            title = input("Title: ")
+            author = input("Author: ")
+            year = input("Year (optional): ")
+            year = int(year) if year.isdigit() else None
+            book = Book(title, author, year)
+            books.append(book)
+            print(f"Added: {book}")
+
+        elif choice == "2":
+            if not books:
+                print("No books yet.")
+            else:
+                print("\n--- Your Books ---")
+                for i, book in enumerate(books, 1):
+                    print(f"{i}. {book}")
+
+        elif choice == "3":
+            print("Goodbye!")
+            break
+
+        else:
+            print("Invalid choice.")
 ```
 
-**Test your collection methods:**
+**Test it:** Run `python book.py`. Add a few books, list them, exit. Notice that after you exit, the books disappear – they are not saved. We will fix that in the next step.
+
+## 1.2 Create the `Member` Class (same pattern)
+
+Open `member.py` and write:
+
 ```python
-# Test sample books creation
-books = Book.create_sample_books()
-print(f"Created {len(books)} sample books")
+class Member:
+    def __init__(self, name, member_id, email=None):
+        self.name = name
+        self.member_id = member_id
+        self.email = email
 
-for book in books[:2]:  # Show first 2 books
-    print(book.get_info())
-
-# Test ISBN validation
-print(Book.validate_isbn("978-0451524935"))  # Should be True
-print(Book.validate_isbn("invalid"))         # Should be False
+    def __repr__(self):
+        email_str = f" <{self.email}>" if self.email else ""
+        return f"{self.name} (ID: {self.member_id}){email_str}"
 ```
+
+Add a similar test loop:
+
+```python
+if __name__ == "__main__":
+    members = []
+
+    while True:
+        print("\n--- Member Menu ---")
+        print("1. Add a member")
+        print("2. Show all members")
+        print("3. Exit")
+        choice = input("Choose: ")
+
+        if choice == "1":
+            name = input("Name: ")
+            member_id = input("ID (e.g., M001): ")
+            email = input("Email (optional): ") or None
+            member = Member(name, member_id, email)
+            members.append(member)
+            print(f"Added: {member}")
+
+        elif choice == "2":
+            if not members:
+                print("No members yet.")
+            else:
+                print("\n--- Your Members ---")
+                for i, m in enumerate(members, 1):
+                    print(f"{i}. {m}")
+
+        elif choice == "3":
+            print("Goodbye!")
+            break
+
+        else:
+            print("Invalid choice.")
+```
+
+Run `python member.py` and test it. Now we have two independent programs. Next we will make them **saved to disk** using JSON.
 
 ---
 
-## 👥 Exercise 2: Member Class Design
+# Step 2: Adding Persistence with JSON
 
-**Goal**: Create a Member class to represent library patrons
+## 2.1 Learn JSON basics
 
-### Task 2.1: Basic Member Class
+JSON (JavaScript Object Notation) is a text format that looks like Python dictionaries and lists. Python can convert objects to JSON using the `json` module.
 
-Create `member.py` with a Member class:
+Add `import json` at the top of `book.py` and `member.py`.
 
-```python
-class Member:
-    """Represents a library member."""
+## 2.2 Add `to_dict` and `from_dict` methods to `Book`
 
-    # Class variable to track total members
-    total_members = 0
-
-    def __init__(self, member_id, name, email):
-        """Initialize a library member."""
-        # TODO: Initialize instance variables
-        # - member_id, name, email
-        # - borrowed_books (empty list)
-        # - join_date (current date/time)
-        # Increment total_members class variable
-
-    def get_info(self):
-        """Return formatted member information."""
-        # TODO: Return string with member details and borrowed book count
-
-    def borrow_book(self, book):
-        """Add a book to member's borrowed list."""
-        # TODO: Add book to borrowed_books list
-        # TODO: Update book's borrower_id
-        # TODO: Handle max books limit (e.g., 3 books)
-
-    def return_book(self, book):
-        """Remove a book from member's borrowed list."""
-        # TODO: Remove book from borrowed_books list
-        # TODO: Clear book's borrower_id
-
-    def get_borrowed_books(self):
-        """Return list of currently borrowed books."""
-        # TODO: Return copy of borrowed_books list
-
-    def can_borrow_more(self, max_books=3):
-        """Check if member can borrow more books."""
-        # TODO: Check current borrowed count vs max_books
-```
-
-**Test your Member class:**
-```python
-# Create members
-member1 = Member("M001", "Alice Johnson", "alice@email.com")
-member2 = Member("M002", "Bob Smith", "bob@email.com")
-
-print(f"Total members: {Member.total_members}")  # Should be 2
-
-print(member1.get_info())
-print(member2.can_borrow_more())  # Should be True
-
-# Test borrowing limit
-books = Book.create_sample_books()
-member1.borrow_book(books[0])
-member1.borrow_book(books[1])
-member1.borrow_book(books[2])
-print(member1.can_borrow_more())  # Should be False (at limit)
-
-member1.borrow_book(books[3])  # Should not work
-```
-
-### Task 2.2: Member Search and Filtering
-
-Add search capabilities to the Member class:
+Inside the `Book` class, add:
 
 ```python
-class Member:
-    # ... (previous methods)
-
-    @classmethod
-    def find_by_id(cls, members_list, member_id):
-        """Find member by ID in a list of members."""
-        # TODO: Search through members_list
-        # TODO: Return member or None
-
-    @classmethod
-    def find_by_name(cls, members_list, name):
-        """Find members by name (partial match)."""
-        # TODO: Return list of matching members
-
     def to_dict(self):
-        """Convert member to dictionary for serialization."""
-        # TODO: Return dictionary representation
+        return {
+            "title": self.title,
+            "author": self.author,
+            "year": self.year
+        }
+
+    @classmethod
+    def from_dict(cls, data):
+        return cls(
+            title=data["title"],
+            author=data["author"],
+            year=data.get("year")
+        )
 ```
 
-**Test your search methods:**
+Similarly, add to `Member` class:
+
 ```python
-# Create member list
-members = [
-    Member("M001", "Alice Johnson", "alice@email.com"),
-    Member("M002", "Bob Smith", "bob@email.com"),
-    Member("M003", "Alice Brown", "alice.brown@email.com")
-]
+    def to_dict(self):
+        return {
+            "name": self.name,
+            "member_id": self.member_id,
+            "email": self.email
+        }
 
-# Test search
-found_member = Member.find_by_id(members, "M002")
-print(found_member.get_info() if found_member else "Not found")
-
-alice_members = Member.find_by_name(members, "Alice")
-print(f"Found {len(alice_members)} Alice members")
-
-# Test serialization
-member_dict = members[0].to_dict()
-print(member_dict)
+    @classmethod
+    def from_dict(cls, data):
+        return cls(
+            name=data["name"],
+            member_id=data["member_id"],
+            email=data.get("email")
+        )
 ```
+
+## 2.3 Save and load in the test section
+
+We will modify the `if __name__ == '__main__'` block in `book.py` so that on startup it loads existing books from `books.json`, and after each change (add, delete, update – we haven't added delete/update yet) it saves automatically.
+
+For now, we will load at the beginning and save after adding a book. Replace the test section in `book.py` with:
+
+```python
+if __name__ == "__main__":
+    import json
+    import os
+
+    DATA_FILE = "books.json"
+
+    # Load existing books if any
+    if os.path.exists(DATA_FILE):
+        with open(DATA_FILE, "r") as f:
+            books_data = json.load(f)
+        books = [Book.from_dict(data) for data in books_data]
+        print(f"Loaded {len(books)} books from {DATA_FILE}")
+    else:
+        books = []
+        print("No saved books found. Starting fresh.")
+
+    while True:
+        print("\n--- Book Menu ---")
+        print("1. Add a book")
+        print("2. Show all books")
+        print("3. Exit")
+        choice = input("Choose: ")
+
+        if choice == "1":
+            title = input("Title: ")
+            author = input("Author: ")
+            year = input("Year (optional): ")
+            year = int(year) if year.isdigit() else None
+            book = Book(title, author, year)
+            books.append(book)
+
+            # Save immediately
+            with open(DATA_FILE, "w") as f:
+                json.dump([b.to_dict() for b in books], f, indent=2)
+
+            print(f"Added and saved: {book}")
+
+        elif choice == "2":
+            if not books:
+                print("No books yet.")
+            else:
+                print("\n--- Your Books ---")
+                for i, book in enumerate(books, 1):
+                    print(f"{i}. {book}")
+
+        elif choice == "3":
+            print("Goodbye!")
+            break
+
+        else:
+            print("Invalid choice.")
+```
+
+**Test:** Run `python book.py`. Add some books. Exit. Run again – you should see the loaded books.
+
+Do the same for `member.py` (use `members.json`). After this, both files work independently and store data.
 
 ---
 
-## 🏛️ Exercise 3: Library System Integration
+# Step 3: Building Manager Classes (CRUD Operations)
 
-**Goal**: Create a Library class that manages books and members
+Now we will create **Manager** classes that handle all operations on a collection of `Book` or `Member` objects. These managers will contain methods like `add`, `list`, `find`, `update`, `delete`, and they will automatically save to JSON.
 
-### Task 3.1: Basic Library Class
+We will add **one or two methods at a time**, testing each thoroughly.
 
-Create `library.py` with a Library class:
+## 3.1 Create `BookManager` in `book_manager.py`
 
-```python
-from book import Book
-from member import Member
-
-class Library:
-    """Main library management system."""
-
-    def __init__(self, name):
-        """Initialize library with name."""
-        # TODO: Initialize instance variables
-        # - name, books (empty list), members (empty list)
-
-    def add_book(self, book):
-        """Add a book to the library collection."""
-        # TODO: Add book to books list
-        # TODO: Validate book is Book instance
-
-    def add_member(self, member):
-        """Add a member to the library."""
-        # TODO: Add member to members list
-        # TODO: Validate member is Member instance
-
-    def get_available_books(self):
-        """Return list of available books."""
-        # TODO: Filter books where is_available() is True
-
-    def get_borrowed_books(self):
-        """Return list of borrowed books."""
-        # TODO: Filter books where is_available() is False
-
-    def find_book_by_title(self, title):
-        """Find books by title (partial match)."""
-        # TODO: Return list of matching books
-
-    def find_member_by_id(self, member_id):
-        """Find member by ID."""
-        # TODO: Use Member.find_by_id method
-```
-
-**Test your Library class:**
-```python
-# Create library
-library = Library("City Central Library")
-
-# Add sample data
-books = Book.create_sample_books()
-members = [
-    Member("M001", "Alice Johnson", "alice@email.com"),
-    Member("M002", "Bob Smith", "bob@email.com")
-]
-
-for book in books:
-    library.add_book(book)
-
-for member in members:
-    library.add_member(member)
-
-print(f"Library: {library.name}")
-print(f"Total books: {len(library.books)}")
-print(f"Available books: {len(library.get_available_books())}")
-print(f"Total members: {len(library.members)}")
-```
-
-### Task 3.2: Library Statistics
-
-Add statistical methods to the Library class:
-
-```python
-class Library:
-    # ... (previous methods)
-
-    def get_library_stats(self):
-        """Return comprehensive library statistics."""
-        # TODO: Return dictionary with stats:
-        # - total_books, available_books, borrowed_books
-        # - total_members, active_members (with borrowed books)
-        # - popular_books (most borrowed - for future extension)
-
-    def generate_report(self):
-        """Generate a text report of library status."""
-        # TODO: Create formatted text report
-        # TODO: Include stats and current status
-```
-
-**Test your statistics methods:**
-```python
-# Get and display statistics
-stats = library.get_library_stats()
-print("Library Statistics:")
-for key, value in stats.items():
-    print(f"  {key}: {value}")
-
-# Generate report
-report = library.generate_report()
-print("\nLibrary Report:")
-print(report)
-```
-
----
-
-## 📚 Exercise 4: Borrowing System
-
-**Goal**: Implement the complete book borrowing workflow
-
-### Task 4.1: Borrowing Operations
-
-Add borrowing methods to the Library class:
-
-```python
-class Library:
-    # ... (previous methods)
-
-    def borrow_book(self, member_id, book_title):
-        """
-        Allow a member to borrow a book.
-
-        Args:
-            member_id (str): Member's ID
-            book_title (str): Book title to borrow
-
-        Returns:
-            bool: True if successful, False otherwise
-        """
-        # TODO: Find member by ID
-        # TODO: Find available book by title
-        # TODO: Check if member can borrow more books
-        # TODO: Process the borrowing (update book and member)
-        # TODO: Return success status
-
-    def return_book(self, member_id, book_title):
-        """
-        Allow a member to return a book.
-
-        Args:
-            member_id (str): Member's ID
-            book_title (str): Book title to return
-
-        Returns:
-            bool: True if successful, False otherwise
-        """
-        # TODO: Find member by ID
-        # TODO: Find book by title in member's borrowed books
-        # TODO: Process the return (update book and member)
-        # TODO: Return success status
-```
-
-**Test your borrowing system:**
-```python
-# Test borrowing
-success = library.borrow_book("M001", "1984")
-print(f"Borrowing successful: {success}")
-
-success = library.borrow_book("M001", "To Kill a Mockingbird")
-print(f"Second borrowing successful: {success}")
-
-# Check status
-stats = library.get_library_stats()
-print(f"Available books: {stats['available_books']}")
-
-# Test return
-success = library.return_book("M001", "1984")
-print(f"Return successful: {success}")
-
-stats = library.get_library_stats()
-print(f"Available books after return: {stats['available_books']}")
-```
-
-### Task 4.2: Error Handling and Validation
-
-Improve the borrowing system with better error handling:
-
-```python
-class LibraryError(Exception):
-    """Custom exception for library operations."""
-    pass
-
-class Library:
-    # ... (previous methods)
-
-    def borrow_book_safe(self, member_id, book_title):
-        """
-        Safe book borrowing with comprehensive error handling.
-
-        Args:
-            member_id (str): Member's ID
-            book_title (str): Book title to borrow
-
-        Returns:
-            str: Success message
-
-        Raises:
-            LibraryError: If borrowing fails
-        """
-        # TODO: Implement with try/catch and detailed error messages
-        # TODO: Check member exists
-        # TODO: Check book exists and is available
-        # TODO: Check borrowing limits
-        # TODO: Process borrowing
-        # TODO: Return success message
-
-    def return_book_safe(self, member_id, book_title):
-        """
-        Safe book return with error handling.
-
-        Args:
-            member_id (str): Member's ID
-            book_title (str): Book title to return
-
-        Returns:
-            str: Success message
-
-        Raises:
-            LibraryError: If return fails
-        """
-        # TODO: Implement safe return with error handling
-```
-
-**Test your error handling:**
-```python
-# Test various error conditions
-try:
-    library.borrow_book_safe("M001", "Non-existent Book")
-except LibraryError as e:
-    print(f"Borrowing failed: {e}")
-
-try:
-    library.return_book_safe("M999", "1984")  # Non-existent member
-except LibraryError as e:
-    print(f"Return failed: {e}")
-
-# Test successful operations
-try:
-    message = library.borrow_book_safe("M001", "Pride and Prejudice")
-    print(f"Success: {message}")
-except LibraryError as e:
-    print(f"Unexpected error: {e}")
-```
-
----
-
-## 🚀 Exercise 5: Advanced Features
-
-**Goal**: Add advanced features to make the system more complete
-
-### Task 5.1: Search and Filter System
-
-Add search capabilities to the Library class:
-
-```python
-class Library:
-    # ... (previous methods)
-
-    def search_books(self, query, search_by="title"):
-        """
-        Search books by various criteria.
-
-        Args:
-            query (str): Search query
-            search_by (str): Search field ("title", "author", "isbn")
-
-        Returns:
-            list: Matching books
-        """
-        # TODO: Implement search by different fields
-        # TODO: Support partial matches
-
-    def get_overdue_books(self, max_borrow_days=14):
-        """
-        Get list of overdue books (for future enhancement).
-
-        Args:
-            max_borrow_days (int): Maximum borrowing period
-
-        Returns:
-            list: Overdue books (empty for now)
-        """
-        # TODO: This would require adding borrow dates to track time
-        # TODO: Return empty list for now
-        return []
-
-    def generate_member_report(self, member_id):
-        """
-        Generate detailed report for a member.
-
-        Args:
-            member_id (str): Member's ID
-
-        Returns:
-            str: Formatted member report
-        """
-        # TODO: Find member
-        # TODO: Create detailed report with borrowing history
-```
-
-**Test your advanced features:**
-```python
-# Test search
-python_books = library.search_books("Python", "title")
-print(f"Found {len(python_books)} Python books")
-
-orwell_books = library.search_books("Orwell", "author")
-print(f"Found {len(orwell_books)} Orwell books")
-
-# Test member report
-try:
-    report = library.generate_member_report("M001")
-    print("Member Report:")
-    print(report)
-except Exception as e:
-    print(f"Report generation failed: {e}")
-```
-
-### Task 5.2: Data Persistence
-
-Add basic data saving/loading capabilities:
+Create a new file `book_manager.py`. It will import the `Book` class from `book.py`. Write:
 
 ```python
 import json
 import os
-
-class Library:
-    # ... (previous methods)
-
-    def save_data(self, filename="library_data.json"):
-        """Save library data to JSON file."""
-        # TODO: Convert books and members to dictionaries
-        # TODO: Save to JSON file
-
-    def load_data(self, filename="library_data.json"):
-        """Load library data from JSON file."""
-        # TODO: Load from JSON file
-        # TODO: Recreate Book and Member objects
-        # TODO: Handle file not found gracefully
-```
-
-**Test your data persistence:**
-```python
-# Save library state
-library.save_data("test_library.json")
-
-# Create new library and load data
-new_library = Library("Test Library")
-new_library.load_data("test_library.json")
-
-print(f"Loaded library has {len(new_library.books)} books")
-print(f"Loaded library has {len(new_library.members)} members")
-```
-
----
-
-## 🏆 Challenge Exercises
-
-### Challenge 1: Book Categories
-
-Add book categorization system:
-
-```python
-class Book:
-    # Add category support
-    def __init__(self, title, author, isbn, publication_year, category="General"):
-        # TODO: Add category parameter
-
-class Library:
-    def get_books_by_category(self, category):
-        """Return books in a specific category."""
-        # TODO: Implement category filtering
-
-    def get_category_stats(self):
-        """Return statistics by category."""
-        # TODO: Count books per category
-```
-
-### Challenge 2: Borrowing Limits and Due Dates
-
-Implement borrowing limits and due date tracking:
-
-```python
-from datetime import datetime, timedelta
-
-class Book:
-    # Add borrowing date tracking
-    def borrow_book(self, member_id, borrow_date=None):
-        # TODO: Store borrow date
-
-class Member:
-    # Add due date checking
-    def get_overdue_books(self):
-        # TODO: Check which books are overdue
-
-class Library:
-    def get_overdue_books(self, current_date=None):
-        # TODO: Find all overdue books
-```
-
----
-
-## ✅ Solution Code
-
-### Book Class Solution
-
-```python
-class Book:
-    """Represents a book in the library system."""
-
-    def __init__(self, title, author, isbn, publication_year):
-        self.title = title
-        self.author = author
-        self.isbn = isbn
-        self.publication_year = publication_year
-        self.available = True
-        self.borrower_id = None
-
-    def get_info(self):
-        status = "Available" if self.available else f"Borrowed by {self.borrower_id}"
-        return f"'{self.title}' by {self.author} ({self.publication_year}) - {status}"
-
-    def is_available(self):
-        return self.available
-
-    def borrow_book(self, member_id):
-        if self.available:
-            self.available = False
-            self.borrower_id = member_id
-            return True
-        return False
-
-    def return_book(self):
-        if not self.available:
-            self.available = True
-            self.borrower_id = None
-            return True
-        return False
-
-    @classmethod
-    def create_sample_books(cls):
-        books_data = [
-            ("1984", "George Orwell", "978-0451524935", 1949),
-            ("To Kill a Mockingbird", "Harper Lee", "978-0061120084", 1960),
-            ("Pride and Prejudice", "Jane Austen", "978-0486284736", 1813),
-            ("The Great Gatsby", "F. Scott Fitzgerald", "978-0743273565", 1925),
-            ("Harry Potter", "J.K. Rowling", "978-0439708180", 1997)
-        ]
-        return [cls(*data) for data in books_data]
-
-    @staticmethod
-    def validate_isbn(isbn):
-        return isinstance(isbn, str) and len(isbn.strip()) > 0
-```
-
-### Member Class Solution
-
-```python
-from datetime import datetime
-
-class Member:
-    """Represents a library member."""
-
-    total_members = 0
-
-    def __init__(self, member_id, name, email):
-        self.member_id = member_id
-        self.name = name
-        self.email = email
-        self.borrowed_books = []
-        self.join_date = datetime.now()
-        Member.total_members += 1
-
-    def get_info(self):
-        return f"{self.name} ({self.email}) - {len(self.borrowed_books)} books borrowed"
-
-    def borrow_book(self, book):
-        if len(self.borrowed_books) < 3 and book.is_available():
-            if book.borrow_book(self.member_id):
-                self.borrowed_books.append(book)
-                return True
-        return False
-
-    def return_book(self, book):
-        if book in self.borrowed_books:
-            if book.return_book():
-                self.borrowed_books.remove(book)
-                return True
-        return False
-
-    def get_borrowed_books(self):
-        return self.borrowed_books.copy()
-
-    def can_borrow_more(self, max_books=3):
-        return len(self.borrowed_books) < max_books
-
-    @classmethod
-    def find_by_id(cls, members_list, member_id):
-        return next((member for member in members_list if member.member_id == member_id), None)
-
-    @classmethod
-    def find_by_name(cls, members_list, name):
-        return [member for member in members_list if name.lower() in member.name.lower()]
-
-    def to_dict(self):
-        return {
-            "member_id": self.member_id,
-            "name": self.name,
-            "email": self.email,
-            "borrowed_books_count": len(self.borrowed_books),
-            "join_date": self.join_date.isoformat()
-        }
-```
-
-### Library Class Solution
-
-```python
 from book import Book
+
+class BookManager:
+    def __init__(self, filename="books.json"):
+        self.filename = filename
+        self.books = []
+        self._load()
+
+    def _load(self):
+        """Load books from JSON file."""
+        if os.path.exists(self.filename):
+            with open(self.filename, "r") as f:
+                data = json.load(f)
+            self.books = [Book.from_dict(item) for item in data]
+        else:
+            self.books = []
+
+    def _save(self):
+        """Save current books to JSON file."""
+        with open(self.filename, "w") as f:
+            json.dump([b.to_dict() for b in self.books], f, indent=2)
+```
+
+Now we will add methods one by one, testing after each addition.
+
+### Method 1: `add_book`
+
+Add this method to `BookManager`:
+
+```python
+    def add_book(self, book):
+        self.books.append(book)
+        self._save()
+        print(f"Added: {book}")
+```
+
+Now create a test section at the bottom of `book_manager.py`:
+
+```python
+if __name__ == "__main__":
+    manager = BookManager()
+    print("Welcome to Book Manager")
+
+    while True:
+        print("\n1. Add a book")
+        print("2. List all books")
+        print("3. Exit")
+        choice = input("Choose: ")
+
+        if choice == "1":
+            title = input("Title: ")
+            author = input("Author: ")
+            year = input("Year: ")
+            year = int(year) if year.isdigit() else None
+            book = Book(title, author, year)
+            manager.add_book(book)
+
+        elif choice == "2":
+            if not manager.books:
+                print("No books.")
+            else:
+                for i, b in enumerate(manager.books, 1):
+                    print(f"{i}. {b}")
+
+        elif choice == "3":
+            break
+```
+
+Run `python book_manager.py`. Add some books – they are saved. Exit and restart – they persist.
+
+### Method 2: `list_books` (we already have it, but we can make it nicer)
+
+Replace the manual listing with a method:
+
+```python
+    def list_books(self):
+        """Return a list of all books."""
+        return self.books
+```
+
+Then in the test section you can do: `for b in manager.list_books(): print(b)`. Keep the test simple.
+
+### Method 3: `find_book`
+
+Add:
+
+```python
+    def find_book(self, title):
+        """Find book by exact title (case‑insensitive)."""
+        title_lower = title.lower()
+        for book in self.books:
+            if book.title.lower() == title_lower:
+                return book
+        return None
+```
+
+Test by adding an option:
+
+```python
+        elif choice == "3":
+            title = input("Enter title to search: ")
+            book = manager.find_book(title)
+            if book:
+                print(f"Found: {book}")
+            else:
+                print("Not found.")
+```
+
+Adjust menu numbering accordingly.
+
+### Method 4: `update_book`
+
+```python
+    def update_book(self, old_title, new_title=None, new_author=None, new_year=None):
+        book = self.find_book(old_title)
+        if not book:
+            print(f"Book '{old_title}' not found.")
+            return False
+        if new_title:
+            book.title = new_title
+        if new_author:
+            book.author = new_author
+        if new_year is not None:
+            book.year = new_year
+        self._save()
+        print(f"Updated: {book}")
+        return True
+```
+
+Add a test menu option that asks for the old title and the new details.
+
+### Method 5: `delete_book`
+
+```python
+    def delete_book(self, title):
+        book = self.find_book(title)
+        if not book:
+            print(f"Book '{title}' not found.")
+            return False
+        self.books.remove(book)
+        self._save()
+        print(f"Deleted: {book}")
+        return True
+```
+
+Add a menu option to delete.
+
+**Now `book_manager.py` is complete.** The students have learned: loading/saving JSON, CRUD operations, and using a manager class.
+
+## 3.2 Create `MemberManager` (parallel)
+
+Create `member_manager.py` with identical structure, using `Member` class.
+
+```python
+import json
+import os
 from member import Member
 
-class LibraryError(Exception):
-    """Custom exception for library operations."""
-    pass
-
-class Library:
-    """Main library management system."""
-
-    def __init__(self, name):
-        self.name = name
-        self.books = []
+class MemberManager:
+    def __init__(self, filename="members.json"):
+        self.filename = filename
         self.members = []
+        self._load()
 
-    def add_book(self, book):
-        if isinstance(book, Book):
-            self.books.append(book)
+    def _load(self):
+        if os.path.exists(self.filename):
+            with open(self.filename, "r") as f:
+                data = json.load(f)
+            self.members = [Member.from_dict(item) for item in data]
         else:
-            raise ValueError("Only Book objects can be added")
+            self.members = []
+
+    def _save(self):
+        with open(self.filename, "w") as f:
+            json.dump([m.to_dict() for m in self.members], f, indent=2)
 
     def add_member(self, member):
-        if isinstance(member, Member):
-            self.members.append(member)
-        else:
-            raise ValueError("Only Member objects can be added")
+        self.members.append(member)
+        self._save()
+        print(f"Added: {member}")
 
-    def get_available_books(self):
-        return [book for book in self.books if book.is_available()]
+    def list_members(self):
+        return self.members
 
-    def get_borrowed_books(self):
-        return [book for book in self.books if not book.is_available()]
+    def find_member(self, member_id):
+        for member in self.members:
+            if member.member_id == member_id:
+                return member
+        return None
 
-    def find_book_by_title(self, title):
-        return [book for book in self.books if title.lower() in book.title.lower()]
-
-    def find_member_by_id(self, member_id):
-        return Member.find_by_id(self.members, member_id)
-
-    def borrow_book(self, member_id, book_title):
-        member = self.find_member_by_id(member_id)
+    def update_member(self, member_id, new_name=None, new_email=None):
+        member = self.find_member(member_id)
         if not member:
+            print(f"Member '{member_id}' not found.")
             return False
+        if new_name:
+            member.name = new_name
+        if new_email is not None:
+            member.email = new_email
+        self._save()
+        print(f"Updated: {member}")
+        return True
 
-        available_books = self.get_available_books()
-        matching_books = [book for book in available_books if book_title.lower() in book.title.lower()]
-
-        if not matching_books:
+    def delete_member(self, member_id):
+        member = self.find_member(member_id)
+        if not member:
+            print(f"Member '{member_id}' not found.")
             return False
-
-        book = matching_books[0]  # Take first match
-        return member.borrow_book(book)
-
-    def return_book(self, member_id, book_title):
-        member = self.find_member_by_id(member_id)
-        if not member:
-            return False
-
-        for book in member.get_borrowed_books():
-            if book_title.lower() in book.title.lower():
-                return member.return_book(book)
-        return False
-
-    def borrow_book_safe(self, member_id, book_title):
-        member = self.find_member_by_id(member_id)
-        if not member:
-            raise LibraryError(f"Member {member_id} not found")
-
-        available_books = self.get_available_books()
-        matching_books = [book for book in available_books if book_title.lower() in book.title.lower()]
-
-        if not matching_books:
-            raise LibraryError(f"Book '{book_title}' not available")
-
-        if not member.can_borrow_more():
-            raise LibraryError(f"Member {member_id} has reached borrowing limit")
-
-        book = matching_books[0]
-        if member.borrow_book(book):
-            return f"Successfully borrowed '{book.title}'"
-        else:
-            raise LibraryError("Borrowing failed")
-
-    def return_book_safe(self, member_id, book_title):
-        member = self.find_member_by_id(member_id)
-        if not member:
-            raise LibraryError(f"Member {member_id} not found")
-
-        for book in member.get_borrowed_books():
-            if book_title.lower() in book.title.lower():
-                if member.return_book(book):
-                    return f"Successfully returned '{book.title}'"
-                else:
-                    raise LibraryError("Return failed")
-
-        raise LibraryError(f"Book '{book_title}' not found in member's borrowed books")
-
-    def get_library_stats(self):
-        return {
-            "total_books": len(self.books),
-            "available_books": len(self.get_available_books()),
-            "borrowed_books": len(self.get_borrowed_books()),
-            "total_members": len(self.members),
-            "active_members": len([m for m in self.members if len(m.get_borrowed_books()) > 0])
-        }
-
-    def generate_report(self):
-        stats = self.get_library_stats()
-        report = f"""
-Library Report: {self.name}
-{'='*50}
-Books:
-  Total: {stats['total_books']}
-  Available: {stats['available_books']}
-  Borrowed: {stats['borrowed_books']}
-
-Members:
-  Total: {stats['total_members']}
-  Active: {stats['active_members']}
-
-Available Books:
-"""
-        for book in self.get_available_books()[:5]:  # Show first 5
-            report += f"  - {book.title} by {book.author}\n"
-
-        if len(self.get_available_books()) > 5:
-            report += f"  ... and {len(self.get_available_books()) - 5} more\n"
-
-        return report.strip()
+        self.members.remove(member)
+        self._save()
+        print(f"Deleted: {member}")
+        return True
 ```
+
+Add a test block similar to `book_manager.py` but for members. Include searching by ID, updating, deleting. Test thoroughly.
 
 ---
 
-## 🧪 Testing Your Solutions
+# Step 4: Bringing It Together – The `Library` Class
 
-Create a comprehensive test script:
+Now we create `library.py` that imports both managers and provides a unified interface. It will also allow us to add borrowed books later (optional extension).
 
 ```python
-# test_library_system.py
-from book import Book
-from member import Member
-from library import Library, LibraryError
+from book_manager import BookManager
+from member_manager import MemberManager
 
-def test_basic_functionality():
-    """Test basic library operations."""
-    # Create library
-    library = Library("Test Library")
+class Library:
+    def __init__(self):
+        self.book_manager = BookManager()
+        self.member_manager = MemberManager()
 
-    # Add books and members
-    books = Book.create_sample_books()
-    for book in books:
-        library.add_book(book)
+    def add_book(self, title, author, year=None):
+        from book import Book
+        book = Book(title, author, year)
+        self.book_manager.add_book(book)
 
-    members = [
-        Member("M001", "Alice", "alice@test.com"),
-        Member("M002", "Bob", "bob@test.com")
-    ]
-    for member in members:
-        library.add_member(member)
+    def list_books(self):
+        return self.book_manager.list_books()
 
-    # Test borrowing
-    success = library.borrow_book_safe("M001", "1984")
-    print(f"Borrowing test: {success}")
+    def find_book(self, title):
+        return self.book_manager.find_book(title)
 
-    # Test return
-    success = library.return_book_safe("M001", "1984")
-    print(f"Return test: {success}")
+    def update_book(self, old_title, new_title=None, new_author=None, new_year=None):
+        self.book_manager.update_book(old_title, new_title, new_author, new_year)
 
-    # Test error handling
-    try:
-        library.borrow_book_safe("M999", "1984")  # Invalid member
-    except LibraryError as e:
-        print(f"Error handling test: {e}")
+    def delete_book(self, title):
+        self.book_manager.delete_book(title)
 
-    # Show stats
-    stats = library.get_library_stats()
-    print(f"Library stats: {stats}")
+    def add_member(self, name, member_id, email=None):
+        from member import Member
+        member = Member(name, member_id, email)
+        self.member_manager.add_member(member)
 
-    print("✓ Basic functionality tests passed")
+    def list_members(self):
+        return self.member_manager.list_members()
 
-if __name__ == "__main__":
-    test_basic_functionality()
-    print("🎉 All tests passed!")
+    def find_member(self, member_id):
+        return self.member_manager.find_member(member_id)
+
+    def update_member(self, member_id, new_name=None, new_email=None):
+        self.member_manager.update_member(member_id, new_name, new_email)
+
+    def delete_member(self, member_id):
+        self.member_manager.delete_member(member_id)
 ```
 
+Now we can create a `main.py` (or just test inside `library.py`'s `if __name__ == '__main__'`) that uses the `Library` class to demonstrate everything.
+
+Example test for `library.py`:
+
+```python
+if __name__ == "__main__":
+    lib = Library()
+
+    while True:
+        print("\n=== LIBRARY SYSTEM ===")
+        print("1. Add book")
+        print("2. List books")
+        print("3. Update book")
+        print("4. Delete book")
+        print("5. Add member")
+        print("6. List members")
+        print("7. Update member")
+        print("8. Delete member")
+        print("9. Exit")
+        choice = input("Choose: ")
+
+        if choice == "1":
+            title = input("Title: ")
+            author = input("Author: ")
+            year = input("Year: ")
+            year = int(year) if year.isdigit() else None
+            lib.add_book(title, author, year)
+        elif choice == "2":
+            for b in lib.list_books():
+                print(b)
+        elif choice == "3":
+            old = input("Old title: ")
+            new_title = input("New title (enter to skip): ") or None
+            new_author = input("New author: ") or None
+            year_str = input("New year: ")
+            new_year = int(year_str) if year_str.isdigit() else None
+            lib.update_book(old, new_title, new_author, new_year)
+        elif choice == "4":
+            title = input("Title to delete: ")
+            lib.delete_book(title)
+        elif choice == "5":
+            name = input("Name: ")
+            mid = input("Member ID: ")
+            email = input("Email: ") or None
+            lib.add_member(name, mid, email)
+        elif choice == "6":
+            for m in lib.list_members():
+                print(m)
+        elif choice == "7":
+            mid = input("Member ID: ")
+            new_name = input("New name: ") or None
+            new_email = input("New email: ") or None
+            lib.update_member(mid, new_name, new_email)
+        elif choice == "8":
+            mid = input("Member ID to delete: ")
+            lib.delete_member(mid)
+        elif choice == "9":
+            break
+```
+
+Run `python library.py`. Everything works, and all data is saved to JSON files.
+
 ---
 
-## 📝 Key Takeaways
+## 🎉 What You Have Learned
 
-1. **Class Design**: Well-designed classes encapsulate related data and behavior
-2. **Object Relationships**: Objects can reference and interact with each other
-3. **Error Handling**: Proper validation and exception handling prevent system failures
-4. **Collection Management**: Classes can manage collections of other objects
-5. **Method Design**: Methods should have clear responsibilities and return meaningful values
-6. **Encapsulation**: Control access to internal data through public methods
+1. **Object‑Oriented Design** – Classes, methods, encapsulation.
+2. **Testing with `if __name__ == '__main__'`** – Keeps your code modular.
+3. **JSON persistence** – Saving Python objects to text files.
+4. **Manager pattern** – Separate class for handling collections (CRUD).
+5. **Composition** – Library class uses BookManager and MemberManager.
+6. **Stepwise development** – Adding one small feature at a time and testing.
 
 ---
 
-**Workshop Version**: 1.0
-**Last Updated**: February 2026
-**Estimated Completion Time**: 90 minutes
+## 🔧 Suggested Extensions (Homework)
+
+- Add a `borrow_book(member_id, book_title)` method to the `Library` class. You will need to track which book is borrowed by which member (add a `borrowed_by` field to `Book` and update both book.json and member's borrowed list).
+- Add search by author or partial title.
+- Add a simple command‑line interface with numbered commands (like we did in the final test).
+
+---
+
+## 📂 Final Project Structure
+
+```
+library_project/
+├── book.py            # Book class + to_dict/from_dict
+├── member.py          # Member class + to_dict/from_dict
+├── book_manager.py    # BookManager class (CRUD, JSON)
+├── member_manager.py  # MemberManager class (CRUD, JSON)
+├── library.py         # Library class (ties both managers)
+├── books.json         # automatically created
+└── members.json       # automatically created
+```
+
+All code from this tutorial fits in those files. Students can run `library.py` for the complete system.
+
+---
+
+**Workshop Version**: 3.0 (True step‑by‑step for beginners)  
+**Last Updated**: March 2026  
+**Estimated Total Time**: 2–3 hours (including testing each step)

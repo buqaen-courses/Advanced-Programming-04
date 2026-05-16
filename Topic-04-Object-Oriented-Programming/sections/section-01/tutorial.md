@@ -310,21 +310,6 @@ print(counter.get_count())  # 2
 # Counter.increment(counter)  # self is passed automatically
 ```
 
-### Common `self` Mistakes
-
-```python
-class BadExample:
-    def __init__(self):
-        self.value = 42
-
-    def get_value(self):  # Missing self!
-        return self.value
-
-# This will fail
-obj = BadExample()
-# obj.get_value()  # TypeError: get_value() takes 0 positional arguments but 1 was given
-```
-
 ### `self` in Different Contexts
 
 ```python
@@ -657,48 +642,12 @@ class SafeCalculator:
         self._result = 0.0
 
     def divide(self, dividend, divisor):
-        """
-        Divide dividend by divisor.
-
-        Args:
-            dividend (float): Number to be divided
-            divisor (float): Number to divide by
-
-        Returns:
-            float: Result of division
-
-        Raises:
-            ValueError: If divisor is zero
-            TypeError: If inputs are not numbers
-        """
         try:
-            if divisor == 0:
-                raise ValueError("Cannot divide by zero")
             return dividend / divisor
-        except TypeError:
-            raise TypeError("Both dividend and divisor must be numbers")
-
-    def safe_operation(self, operation, *args):
-        """
-        Perform operation with error handling.
-
-        Args:
-            operation (str): Operation name ('add', 'subtract', etc.)
-            *args: Arguments for the operation
-
-        Returns:
-            float: Result of operation
-        """
-        try:
-            if operation == 'add':
-                return self.add(args[0])
-            elif operation == 'divide':
-                return self.divide(args[0], args[1])
-            else:
-                raise ValueError(f"Unknown operation: {operation}")
         except Exception as e:
-            print(f"Error in {operation}: {e}")
-            return self._result  # Return current result on error
+            print(f"Error:{e}")
+
+
 ```
 
 ---
