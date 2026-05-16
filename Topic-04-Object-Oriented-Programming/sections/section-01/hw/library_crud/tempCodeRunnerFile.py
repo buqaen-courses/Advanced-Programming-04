@@ -1,1 +1,0 @@
-lib.delete_member(member_id)
