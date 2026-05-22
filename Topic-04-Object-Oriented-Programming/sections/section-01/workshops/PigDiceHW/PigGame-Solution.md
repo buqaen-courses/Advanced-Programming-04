@@ -1,6 +1,12 @@
-# 🐷 Pig Dice – Full Solution
+# Pig Dice - Full Solution
 
 Complete implementation of all classes with `pass` placeholders filled in.
+
+---
+
+## `display.py`
+
+(Identical to the fully provided version in the homework file — see `display.py`.)
 
 ---
 
@@ -18,6 +24,11 @@ class Player:
         self.advantages = 0
         self.shield_active = False
 
+    def __repr__(self):
+        shield = "\U0001f6e1\ufe0f" if self.shield_active else "\U0001f513"
+        return (f"Player({self.name}, score={self.score}, "
+                f"turn={self.turn_total}, adv={self.advantages}, {shield})")
+
     def reset_turn(self):
         """Set turn_total = 0 after hold or pig-out."""
         self.turn_total = 0
@@ -25,115 +36,33 @@ class Player:
 
 ---
 
-## `dice.py`
-
-```python
-import random
-
-
-class Dice:
-    """A single six-sided die."""
-
-    @staticmethod
-    def roll() -> int:
-        return random.randint(1, 6)
-```
-
----
-
-## `pig_display.py`
-
-Instance-based display helper — instantiate with color/style defaults, then call methods for coloured output.
-
-```python
-from colorama import init, Fore, Style
-
-init(autoreset=True)
-
-
-class PigDisplay:
-    """Coloured display for the Pig Dice game.
-
-    Instantiate with optional color/style defaults.
-    """
-
-    def __init__(self, header_color=Fore.CYAN, text_color=Fore.YELLOW,
-                 success_color=Fore.GREEN, danger_color=Fore.RED,
-                 info_color=Fore.BLUE, ai_color=Fore.YELLOW,
-                 bright_style=Style.BRIGHT):
-        self.header_color = header_color
-        self.text_color = text_color
-        self.success_color = success_color
-        self.danger_color = danger_color
-        self.info_color = info_color
-        self.ai_color = ai_color
-        self.bright_style = bright_style
-
-    def print_header(self, text: str):
-        print(self.header_color + self.bright_style + "=" * 50)
-        print(self.text_color + self.bright_style + text.center(50))
-        print(self.header_color + self.bright_style + "=" * 50)
-
-    def print_scoreboard(self, p1, p2):
-        print(self.header_color + f"Score: {p1.name} = {p1.score} (\U0001f6e1\ufe0f:{p1.advantages}), {p2.name} = {p2.score} (\U0001f6e1\ufe0f:{p2.advantages})")
-
-    def print_die_roll(self, value: int, turn_total: int):
-        print(self.text_color + f"Rolled: \U0001f3b2 {value}  \u2192 turn total = {turn_total}")
-
-    def print_pig_out(self):
-        print(self.danger_color + "Rolled: \U0001f3b2 1  \u2192 \U0001f437 PIG! Lost all turn points.")
-
-    def print_banked(self, banked: int):
-        print(self.success_color + f"\u2705 Banked {banked} points!")
-
-    def print_winner(self, name: str, score: int):
-        print(self.success_color + self.bright_style + f"\n\U0001f3c6 {name} wins with {score} points!")
-
-    def print_ai_message(self, decision: str):
-        text = "roll" if decision == "r" else "hold"
-        print(self.ai_color + f"\U0001f916 AI chooses to {text}.")
-
-    def print_shield_offer(self, advantages: int):
-        print(self.header_color + f"\U0001f6e1\ufe0f Rolled 6! Activate shield? (y/n): ", end="")
-
-    def print_shield_activated(self, advantages: int):
-        print(self.info_color + f"\U0001f6e1\ufe0f Shield active! Turn total protected (advantages left: {advantages})")
-
-    def print_shield_saved(self, half: int):
-        print(self.info_color + f"\U0001f6e1\ufe0f Shield saved you! Turn total halved to {half}.")
-
-    def print_no_advantages(self):
-        print(self.danger_color + "\u274c No advantages left! 6 added to turn total normally.")
-```
-
----
-
 ## `pig_game.py`
 
-All game logic + the full game loop. Uses `self.display` (PigDisplay) for coloured output.
+All game logic + game loop. Uses `self.display` (the `Display` helper) for coloured output.
 
 ```python
 import math
 import random
 import time
 from player import Player
-from dice import Dice
-from pig_display import PigDisplay
+from display import Display
 
 
 class PigGame:
-    """All game logic + game loop. Uses PigDisplay for coloured output."""
+    """All game logic + game loop. Uses Display for coloured output."""
 
     def __init__(self, target_score: int = 20):
         self.target_score = target_score
         self.players = [Player("Player 1"), Player("Player 2", is_ai=True)]
-        self.dice = Dice()
-        self.display = PigDisplay()
+        self.display = Display()
         self.current_index = 0
         self.game_over = False
 
+    def _roll_die(self) -> int:
+        return random.randint(1, 6)
+
     def roll(self) -> int:
-        value = self.dice.roll()
+        value = self._roll_die()
         player = self.current_player
         if value == 1:
             if player.shield_active:

@@ -15,6 +15,11 @@ class Player:
         # shield_active: True if a shield is currently protecting the turn total
         self.shield_active = False
 
+    def __repr__(self):
+        shield = "\U0001f6e1\ufe0f" if self.shield_active else "\U0001f513"
+        return (f"Player({self.name}, score={self.score}, "
+                f"turn={self.turn_total}, adv={self.advantages}, {shield})")
+
     def reset_turn(self):
         """Set turn_total = 0 after a hold (points banked) or pig-out."""
         pass
