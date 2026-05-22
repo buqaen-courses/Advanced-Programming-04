@@ -1067,6 +1067,10 @@ Score: Player 1 = 3 (:1), Player 2 = 10 (:1)
 ...
 ```
 
+## Stuck? Check the Solution
+
+Full implementations of all files are in the `solution/` folder. Peek if you get stuck, but try to write the code yourself first!
+
 ---
 
 ## Evaluation Checklist

@@ -1,46 +1,3 @@
-# Pig Dice - Full Solution
-
-Complete implementation of all classes with `pass` placeholders filled in.
-
----
-
-## `display.py`
-
-(Identical to the fully provided version in the homework file — see `display.py`.)
-
----
-
-## `player.py`
-
-```python
-class Player:
-    """Represents a player with a score and current turn total."""
-
-    def __init__(self, name: str, is_ai: bool = False):
-        self.name = name
-        self.is_ai = is_ai
-        self.score = 0
-        self.turn_total = 0
-        self.advantages = 0
-        self.shield_active = False
-
-    def __repr__(self):
-        shield = "\U0001f6e1\ufe0f" if self.shield_active else "\U0001f513"
-        return (f"Player({self.name}, score={self.score}, "
-                f"turn={self.turn_total}, adv={self.advantages}, {shield})")
-
-    def reset_turn(self):
-        """Set turn_total = 0 after hold or pig-out."""
-        self.turn_total = 0
-```
-
----
-
-## `pig_game.py`
-
-All game logic + game loop. Uses `self.display` (the `Display` helper) for coloured output.
-
-```python
 import math
 import random
 import time
@@ -122,7 +79,6 @@ class PigGame:
         return None
 
     def play(self):
-        """Run the full coloured game loop."""
         self.display.print_header("PIG DICE")
         print(Fore.CYAN + f"Target: {self.target_score} points\n")
 
@@ -186,22 +142,3 @@ class PigGame:
         winner = self.winner
         if winner:
             self.display.print_winner(winner.name, winner.score)
-```
-
----
-
-## `menu.py`
-
-(Identical to the fully implemented version in the homework file — see `menu.py`.)
-
----
-
-## `main.py`
-
-```python
-from menu import Menu
-
-if __name__ == "__main__":
-    menu = Menu()
-    menu.run()
-```
