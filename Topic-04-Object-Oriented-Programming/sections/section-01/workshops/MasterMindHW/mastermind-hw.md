@@ -1,201 +1,87 @@
-# 🎯 Exercise: Think & Guess – Mastermind-Style Number Guessing Game (OOP Design)
+# Think & Guess — Homework
 
-## 🎮 Sample Gameplay
+## What You'll Build
 
-Here's what a complete game looks like from start to finish:
+A Mastermind-style number guessing game. The computer picks a secret 4-digit number with no repeats. You guess — it tells you how many digits are correct (green), misplaced (yellow), or wrong (red). Figure it out before you run out of attempts.
 
-```
-==================================================
-           🧠 THINK & GUESS 🧠
-==================================================
-1. Start new game
-2. Set max attempts (current = 10)
-0. Exit
-
-Your choice: 1
-
-==================================================
-              THINK & GUESS
-==================================================
-Max attempts: 10
-Secret is a 4-digit number with no repeated digits.
-
-Attempts left: 10
-Your guess: 2571
-🟢-> 1 / 🟡-> 1 / 🔴-> 2
-
-Attempts left: 9
-Your guess: 3482
-🟢-> 0 / 🟡-> 2 / 🔴-> 2
-
-Attempts left: 8
-Your guess: 1589
-🟢-> 4 / 🟡-> 0 / 🔴-> 0
-
-🎉 YOU WON! The secret was 1589.
-```
-
-The computer picks a secret 4-digit number (e.g. `1589`). The player guesses, and after each try gets feedback: 🟢 green count (correct digit + position), 🟡 yellow count (correct digit, wrong position), 🔴 red count (not in secret). The player uses this to narrow down the answer before running out of attempts.
+You'll create **3 Python files**. `Menu` is fully provided (copy-paste). The other two — `Game` and `MasterMind` — you'll build **method by method**, testing each one before moving on.
 
 ---
 
-## 🤔 Think Aloud – What Do We Need?
+## Think Aloud – What Do We Need?
 
-Before diving into code, let's reason about the problem:
+Before you write any code, think about the problem:
 
-- We need to **generate a random 4-digit secret** with no repeated digits — so we need a way to pick digits and ensure uniqueness.
-- We need to **get input from the player** — a 4-digit guess, validated for length, digits only, no repeats.
-- We need to **compare** the guess against the secret — figure out which digits are correct and in the right position (green), which are correct but misplaced (yellow), and which are completely wrong (red).
-- We need to **score it correctly** — count greens first, then yellows from the remaining unmatched digits.
-- The player must **adjust their guess based on the result** — so we show feedback after each attempt.
-- We need to **check if max attempts is reached** — stop the game when attempts run out.
-- We need to **show a win message** when the player guesses correctly.
-
----
-
-## 🧱 Three-Class Architecture
-
-| Class | Responsibility |
-|-------|---------------|
-| `Game` | **Pure business logic only** — secret generation, guess comparison. No `colorama`, no game loop. |
-| `MasterMind` | **Presentation layer** — wraps `Game`, handles colourful output with `colorama`, game loop, win/loss messages, aggregated result display. |
-| `Menu` | **Interactive menu** — fully provided. Start games, change settings, exit. |
+1. **Generate a secret** — 4 unique digits, random order. We'll use a list + while loop.
+2. **Compare a guess** — count greens (right digit, right position), yellows (right digit, wrong position), reds (not in secret at all).
+3. **Track the game** — how many attempts remain? Did the player win?
+4. **Get player input** — validate: exactly 4 digits, all digits, no repeats.
+5. **Show feedback** — coloured counts so the player can refine their next guess.
+6. **Win / lose** — stop when they guess correctly or run out of attempts.
 
 ---
 
-## 📋 Requirements – OOP Design
+## Files You Need
 
-| Requirement | Algorithm / Data Structure |
-|-------------|---------------------------|
-| **Random secret** | Use an empty `list`, `while len(digits) < 4`, pick `random.randint(0, 9)`, check `if d not in digits` before appending. Join as string. |
-| **Compare guess** | Count `green` via positional equality. For `yellow`, collect unmatched digits in two lists, then loop guess_remaining and remove matches from secret_remaining. `red = 4 - green - yellow`. |
-| **Coloured display** | Show only **aggregated** counts: `🟢-> 1 / 🟡-> 1 / 🔴-> 2`. Never expose which digit maps to which colour. |
-| **Attempt limit** | Stored as `self.max_attempts`. `remaining_attempts` starts equal to it and decrements each round. Game stops at 0. |
-| **Game state** | Attributes: `secret` (str), `remaining_attempts` (int), `won` (bool). |
-| **Menu system** | `Menu` class (fully provided) with colourful `colorama` console interface. |
+| File | What to do |
+|------|------------|
+| `game.py` | **Build yourself** — pure logic, no colours |
+| `mastermind.py` | **Build yourself** — presentation layer with colours |
+| `menu.py` | **Copy-paste** — fully provided |
 
 ---
 
-## 🧩 Step-by-Step — What You Need to Implement
+## Class Architecture
 
-### Step 1: `Game` Class (Business Logic Only)
-
-Create a file named `game.py` inside a folder called `MasterMindHW`.
-
-```python
-import random
-
-class Game:
-    """Pure business logic — no colours, no output formatting."""
-
-    def __init__(self, max_attempts: int = 10):
-        # Store max_attempts
-        # Call _generate_secret() and store in self.secret
-        # Set self.remaining_attempts = max_attempts
-        # Set self.won = False
-        pass
+```
++---------------------------+          +-------------------------------+
+|          Game             |          |          MasterMind           |
++---------------------------+          +-------------------------------+
+| - max_attempts            |          | - max_attempts                |
+| - secret: str             |          | - game: Game                  |
+| - remaining_attempts: int |          +-------------------------------+
+| - won: bool               |          | + _print_header(text)         |
++---------------------------+          | + _print_result(g, y, r)     |
+| + _generate_secret()      |          | + _print_win(secret)          |
+| + compare_guess(guess)    |          | + _print_lose(secret)         |
++---------------------------+          | + start()                     |
+                                       | + play()                      |
+                                       +-------------------------------+
 ```
 
-#### Method 1.1: `_generate_secret(self) -> str`
-
-- **Data structure**: an empty `list` called `digits`.
-- **Algorithm**: `while len(digits) < 4`: generate `d = random.randint(0, 9)`. If `d not in digits`, append it. At the end, join as a string.
-- **Returns**: a 4-character string of unique digits (e.g. `"3824"`).
-
-```python
-def _generate_secret(self) -> str:
-    """Generate a 4-digit string with no repeated digits."""
-    ...
+```
++-------------------------------+
+|            Menu               |
++-------------------------------+   <-- FULLY PROVIDED
+| - max_attempts                |
+| - mastermind: MasterMind      |
++-------------------------------+
+| + start_new_game()            |
+| + set_max_attempts()          |
+| + run()                       |
++-------------------------------+
 ```
 
-#### Method 1.2: `compare_guess(self, guess: str) -> tuple`
+### Class Responsibilities
 
-- **Input**: `guess` — a 4-digit string validated by the caller.
-- **Algorithm**:
-  1. `green = sum(1 for i in range(4) if guess[i] == self.secret[i])`
-  2. Build two lists: `secret_remaining` and `guess_remaining` — collect digits where `guess[i] != self.secret[i]`.
-  3. Loop through `guess_remaining`, if a digit exists in `secret_remaining`, increment `yellow` and remove that digit from `secret_remaining`.
-  4. `red = 4 - green - yellow`
-- **Returns**: tuple `(green, yellow, red)` — plain integers, no colours.
-
-```python
-def compare_guess(self, guess: str):
-    """Compare guess with secret. Returns (green, yellow, red)."""
-    ...
-```
+| Class | Status | Responsibility |
+|-------|--------|---------------|
+| `Game` | **You implement** | Pure logic — secret generation, guess comparison. No colours, no I/O. |
+| `MasterMind` | **You implement** | Presentation — coloured output, game loop, input validation. Wraps Game. |
+| `Menu` | Copy-paste | Interactive menu — start games, change max attempts, exit. |
 
 ---
 
-### Step 2: `MasterMind` Class (Presentation Layer)
+## 1. Menu — Copy This
 
-Create `mastermind.py` in the same folder.
-
-```python
-from colorama import init, Fore, Back, Style
-from game import Game
-
-init(autoreset=True)
-
-class MasterMind:
-    """Presentation layer — colourful game output with colorama."""
-
-    def __init__(self, max_attempts: int = 10):
-        self.max_attempts = max_attempts
-        self.game = None
-```
-
-#### Helper Methods (you implement these)
-
-- **`_print_header(self, text: str)`** — print a coloured banner using `Fore.CYAN + Style.BRIGHT` with `"=" * 50` lines and centred yellow text.
-- **`_print_result(self, green: int, yellow: int, red: int)`** — display aggregated result: `🟢-> N / 🟡-> N / 🔴-> N` with each emoji in its respective `Fore.GREEN` / `Fore.YELLOW` / `Fore.RED`. Do **not** show per-digit colours.
-- **`_print_win(self, secret: str)`** — green victory message with the secret.
-- **`_print_lose(self, secret: str)`** — red game-over message with the secret.
-
-#### Method: `start(self)`
-
-- **Algorithm**:
-  - Create `self.game = Game(max_attempts=self.max_attempts)`.
-  - Call `self.play()` to run the interactive loop.
-
-```python
-def start(self):
-    """Create a Game instance and start the game loop."""
-    ...
-```
-
-#### Method: `play(self)`
-
-This is the **main game loop** — it lives in `MasterMind`, not in `Game`.
-
-- **Algorithm**:
-  - Print coloured header and welcome message.
-  - Loop while `self.game.remaining_attempts > 0 and not self.game.won`:
-    - Print coloured "Attempts left:" message.
-    - Get guess with coloured input prompt.
-    - **Validate**: `len(guess) == 4`, `guess.isdigit()`, `len(set(guess)) == 4`. If invalid, print coloured error and `continue`.
-    - Call `self.game.compare_guess(guess)` → `(green, yellow, red)`.
-    - If `green == 4`: set `won = True`, call `_print_win()`.
-    - Else: call `_print_result(green, yellow, red)`.
-    - Decrement `self.game.remaining_attempts`.
-  - After loop, if not won, call `_print_lose()`.
-
-```python
-def play(self):
-    """Run the coloured game loop with input validation."""
-    ...
-```
-
----
-
-### Step 3: `Menu` Class — Fully Implemented ✅
-
-Create `menu.py` in the same folder. This one is **fully provided** — copy it as-is.
+Create `menu.py` and paste this exactly:
 
 ```python
 from colorama import init, Fore, Style
 from mastermind import MasterMind
 
 init(autoreset=True)
+
 
 class Menu:
     """Colourful interactive menu for the Think & Guess game."""
@@ -210,13 +96,13 @@ class Menu:
         print(Fore.CYAN + Style.BRIGHT + "=" * 50)
 
     def _print_success(self, msg: str):
-        print(Fore.GREEN + f"✓ {msg}")
+        print(Fore.GREEN + f"\u2713 {msg}")
 
     def _print_error(self, msg: str):
-        print(Fore.RED + f"✗ {msg}")
+        print(Fore.RED + f"\u2717 {msg}")
 
     def _print_info(self, msg: str):
-        print(Fore.BLUE + f"ℹ {msg}")
+        print(Fore.BLUE + f"\u2139 {msg}")
 
     def start_new_game(self):
         self.mastermind = MasterMind(max_attempts=self.max_attempts)
@@ -225,7 +111,10 @@ class Menu:
 
     def set_max_attempts(self):
         try:
-            new_val = int(input(Fore.YELLOW + f"New max attempts (current = {self.max_attempts}): " + Style.RESET_ALL).strip())
+            new_val = int(input(
+                Fore.YELLOW + f"New max attempts (current = {self.max_attempts}): "
+                + Style.RESET_ALL
+            ).strip())
             if new_val < 1:
                 self._print_error("Attempts must be >= 1")
             else:
@@ -236,9 +125,10 @@ class Menu:
 
     def run(self):
         while True:
-            self._print_header("🧠 THINK & GUESS 🧠")
+            self._print_header("\U0001f9e0 THINK & GUESS \U0001f9e0")
             print(Fore.MAGENTA + Style.BRIGHT + "1." + Fore.GREEN + " Start new game")
-            print(Fore.MAGENTA + Style.BRIGHT + "2." + Fore.GREEN + f" Set max attempts (current = {self.max_attempts})")
+            print(Fore.MAGENTA + Style.BRIGHT + "2." + Fore.GREEN +
+                  f" Set max attempts (current = {self.max_attempts})")
             print(Fore.RED + Style.BRIGHT + "0." + Fore.RED + " Exit")
 
             choice = input(Fore.CYAN + "\nYour choice: " + Style.RESET_ALL).strip()
@@ -252,13 +142,473 @@ class Menu:
                 break
             else:
                 self._print_error("Invalid choice. Enter 1, 2 or 0.")
+
+
+if __name__ == "__main__":
+    menu = Menu()
+    menu.run()
+```
+
+Don't run it yet — `MasterMind` doesn't exist.
+
+---
+
+## 2. Build Game — Method by Method
+
+Open `game.py`. Start with an empty file.
+
+### 2a. `__init__`
+
+**What we need**
+
+A Game stores:
+
+```
+┌─────────────────────┬──────────┬──────────────────────────────────┐
+│ Attribute           │ Type     │ What it's for                    │
+├─────────────────────┼──────────┼──────────────────────────────────┤
+│ max_attempts        │ int      │ How many guesses allowed         │
+│ secret              │ str      │ The 4-digit target (generated)   │
+│ remaining_attempts  │ int      │ Guesses left (starts = max)      │
+│ won                 │ bool     │ Did the player guess correctly?  │
+└─────────────────────┴──────────┴──────────────────────────────────┘
+```
+
+**Write the code**
+
+```python
+import random
+
+
+class Game:
+    """Pure business logic — no colours, no output formatting."""
+
+    def __init__(self, max_attempts: int = 10):
+        self.max_attempts = max_attempts
+        self.secret = self._generate_secret()
+        self.remaining_attempts = max_attempts
+        self.won = False
+```
+
+We call `_generate_secret()` in `__init__`, so we need to write that next. For now, make it a placeholder so the code runs:
+
+```python
+    def _generate_secret(self) -> str:
+        return "0000"  # temporary — we'll fix this next
+```
+
+**Test it**
+
+Add this at the bottom:
+
+```python
+if __name__ == "__main__":
+    print("=== Test __init__ ===")
+    g = Game()
+    print(f"Secret: {g.secret}")             # 0000 (temp)
+    print(f"Max attempts: {g.max_attempts}") # 10
+    print(f"Remaining: {g.remaining_attempts}") # 10
+    print(f"Won: {g.won}")                   # False
+```
+
+Run `python game.py`:
+```
+=== Test __init__ ===
+Secret: 0000
+Max attempts: 10
+Remaining: 10
+Won: False
 ```
 
 ---
 
-## ✅ Final Integration
+### 2b. `_generate_secret`
 
-Create a `main.py` file that ties everything together:
+**What we need**
+
+Build a 4-digit string with no repeated digits:
+
+```
+                    while len(digits) < 4
+                           │
+                           ▼
+                    ┌──────────────┐
+                    │ pick random  │
+                    │ digit 0-9    │
+                    └──────┬───────┘
+                           │
+                    ┌──────▼──────┐
+               No   │ digit in    │
+         ┌─────────│ digits[]?   │
+         │         └─────────────┘
+         │               │ Yes
+         │               ▼
+         │          (skip it)
+         │
+         ▼
+  ┌────────────┐
+  │ append to  │
+  │ digits[]   │
+  └────────────┘
+         │
+         ▼
+  (back to top until len=4)
+
+  Then: ''.join(str(d) for d in digits)
+```
+
+**Write the code** (replace the temporary version):
+
+```python
+    def _generate_secret(self) -> str:
+        digits = []
+        while len(digits) < 4:
+            d = random.randint(0, 9)
+            if d not in digits:
+                digits.append(d)
+        return ''.join(str(d) for d in digits)
+```
+
+**Test it**
+
+Update the test block:
+
+```python
+if __name__ == "__main__":
+    print("=== Test _generate_secret ===")
+    g = Game()
+    print(f"Secret: {g.secret}")                # 4 unique digits
+    print(f"Length: {len(g.secret)}")            # 4
+    print(f"Unique: {len(set(g.secret)) == 4}")  # True
+    print(f"Is digits: {g.secret.isdigit()}")    # True
+    print(f"\nSecrets across 5 games:")
+    for i in range(5):
+        print(f"  Game {i+1}: {Game().secret}")
+```
+
+Run it. Every secret should be exactly 4 unique digits.
+
+---
+
+### 2c. `compare_guess`
+
+**What we need**
+
+Compare a guess against the secret and count:
+
+- **Green** → same digit, same position (`guess[i] == secret[i]`)
+- **Yellow** → same digit, different position (in guess_remaining AND secret_remaining, cross-checked with removal)
+- **Red** → everything else
+
+Algorithm step by step:
+
+```
+1. Count green:
+   for i in 0..3:
+       if guess[i] == secret[i] → green++
+
+2. Build remaining lists (where guess[i] != secret[i]):
+   secret_remaining = [secret[i] for i where guess[i] != secret[i]]
+   guess_remaining  = [guess[i]  for i where guess[i] != secret[i]]
+
+3. Count yellow:
+   for each g in guess_remaining:
+       if g in secret_remaining:
+           yellow++
+           remove g from secret_remaining
+
+4. red = 4 - green - yellow
+```
+
+**Write the code**
+
+```python
+    def compare_guess(self, guess: str):
+        green = sum(1 for i in range(4) if guess[i] == self.secret[i])
+
+        secret_remaining = []
+        guess_remaining = []
+        for i in range(4):
+            if guess[i] != self.secret[i]:
+                secret_remaining.append(self.secret[i])
+                guess_remaining.append(guess[i])
+
+        yellow = 0
+        for g in guess_remaining:
+            if g in secret_remaining:
+                yellow += 1
+                secret_remaining.remove(g)
+
+        red = 4 - green - yellow
+        return (green, yellow, red)
+```
+
+**Test it**
+
+```python
+if __name__ == "__main__":
+    # --- _generate_secret ---
+    print("=== Test _generate_secret ===")
+    g = Game()
+    print(f"Secret: {g.secret}")
+    print(f"Length: {len(g.secret)}")
+    print(f"Unique: {len(set(g.secret)) == 4}")
+    print(f"Is digits: {g.secret.isdigit()}")
+
+    # --- compare_guess ---
+    print("\n=== Test compare_guess ===")
+    # Force a known secret for testing
+    g.secret = "1589"
+    print(f"Secret = {g.secret}")
+    tests = [
+        ("1589", (4, 0, 0)),  # exact match
+        ("1234", (1, 0, 3)),  # only 1 at pos 0 matches
+        ("8519", (0, 4, 0)),  # all correct, all misplaced
+        ("2571", (0, 2, 2)),  # 5 and 1 exist but misplaced
+        ("7777", (0, 0, 4)),  # nothing matches
+    ]
+    for guess, expected in tests:
+        result = g.compare_guess(guess)
+        status = "✓" if result == expected else "✗"
+        print(f"  {status} {guess} -> {result} (expected {expected})")
+```
+
+Run it. Every test should show `✓`.
+
+---
+
+## 3. Build MasterMind — Method by Method
+
+Open `mastermind.py`. Start empty.
+
+### 3a. `__init__`
+
+**What we need**
+
+Just store `max_attempts` and set `self.game = None` (the Game is created when `start()` is called).
+
+```python
+from colorama import init, Fore, Style
+from game import Game
+
+init(autoreset=True)
+
+
+class MasterMind:
+    """Presentation layer — colourful game output with colorama."""
+
+    def __init__(self, max_attempts: int = 10):
+        self.max_attempts = max_attempts
+        self.game = None
+```
+
+No test yet — nothing to verify.
+
+---
+
+### 3b. `_print_header`
+
+**What we need**
+
+A coloured banner:
+
+```
+==================================================
+              THINK & GUESS
+==================================================
+```
+
+**Write the code**
+
+```python
+    def _print_header(self, text: str):
+        print(Fore.CYAN + Style.BRIGHT + "=" * 50)
+        print(Fore.YELLOW + Style.BRIGHT + text.center(50))
+        print(Fore.CYAN + Style.BRIGHT + "=" * 50)
+```
+
+**Test it**
+
+```python
+if __name__ == "__main__":
+    m = MasterMind()
+    m._print_header("THINK & GUESS")
+    print("Does it look right? (y/n) ", end="")
+    input()
+```
+
+Run it. You should see the banner. Type y and press Enter to pass.
+
+---
+
+### 3c. `_print_result`
+
+**What we need**
+
+Show aggregated counts with coloured emojis:
+
+```
+🟢-> 1 / 🟡-> 1 / 🔴-> 2
+```
+
+Each segment in its colour: green emoji, yellow emoji, red emoji.
+
+**Write the code**
+
+```python
+    def _print_result(self, green: int, yellow: int, red: int):
+        parts = [
+            Fore.GREEN + f"\U0001f7e2-> {green}",
+            Fore.YELLOW + f" / \U0001f7e1-> {yellow}",
+            Fore.RED + f" / \U0001f534-> {red}"
+        ]
+        print("".join(parts))
+```
+
+**Test it**
+
+```python
+if __name__ == "__main__":
+    m = MasterMind()
+    m._print_header("TEST: _print_result")
+    print("Expected:  🟢-> 1 / 🟡-> 1 / 🔴-> 2")
+    m._print_result(1, 1, 2)
+    print("\nExpected:  🟢-> 4 / 🟡-> 0 / 🔴-> 0")
+    m._print_result(4, 0, 0)
+```
+
+Run it and compare visually.
+
+---
+
+### 3d. `_print_win` and `_print_lose`
+
+**What we need**
+
+Win: bright green celebration with the secret. Lose: bright red game-over with the secret.
+
+**Write the code**
+
+```python
+    def _print_win(self, secret: str):
+        print(Fore.GREEN + Style.BRIGHT + f"\n\U0001f389 YOU WON! The secret was {secret}.")
+
+    def _print_lose(self, secret: str):
+        print(Fore.RED + Style.BRIGHT + f"\n\U0001f480 GAME OVER! The secret was {secret}.")
+```
+
+**Test them**
+
+```python
+if __name__ == "__main__":
+    m = MasterMind()
+    m._print_header("TEST: win/lose")
+    m._print_win("1589")
+    m._print_lose("1589")
+```
+
+Run it. Win should be green, lose should be red.
+
+---
+
+### 3e. `start`
+
+**What we need**
+
+Create a `Game` instance and call `play()`.
+
+```python
+    def start(self):
+        """Create a Game instance and start the game loop."""
+        self.game = Game(max_attempts=self.max_attempts)
+        self.play()
+```
+
+---
+
+### 3f. `play` — The Game Loop
+
+**What we need**
+
+The full game loop:
+
+```
+1. Print header "THINK & GUESS"
+2. Print "Max attempts: N"
+3. Print "Secret is a 4-digit number with no repeated digits."
+
+4. Loop while remaining_attempts > 0 and not won:
+   │
+   ├── Print "Attempts left: N"
+   ├── Prompt "Your guess: "
+   │
+   ├── Validate:
+   │   ├── len(guess) == 4?
+   │   ├── guess.isdigit()?
+   │   └── len(set(guess)) == 4?
+   │   └── If any fail → print error, continue
+   │
+   ├── Call game.compare_guess(guess) → (g, y, r)
+   │
+   ├── If g == 4:
+   │   ├── won = True
+   │   └── _print_win()
+   │
+   │   Else:
+   │       _print_result(g, y, r)
+   │
+   └── remaining_attempts--
+
+5. If not won → _print_lose()
+```
+
+**Write the code**
+
+```python
+    def play(self):
+        """Run the coloured game loop with input validation."""
+        self._print_header("THINK & GUESS")
+        print(Fore.CYAN + f"Max attempts: {self.game.max_attempts}")
+        print(Fore.CYAN + "Secret is a 4-digit number with no repeated digits.\n")
+
+        while self.game.remaining_attempts > 0 and not self.game.won:
+            print(Fore.MAGENTA + f"Attempts left: {self.game.remaining_attempts}")
+
+            guess = input(Fore.CYAN + "Your guess: " + Style.RESET_ALL).strip()
+
+            if len(guess) != 4 or not guess.isdigit() or len(set(guess)) != 4:
+                print(Fore.RED + "Invalid guess. Enter exactly 4 non-repeating digits (0-9).")
+                continue
+
+            green, yellow, red = self.game.compare_guess(guess)
+
+            if green == 4:
+                self.game.won = True
+                self._print_win(self.game.secret)
+            else:
+                self._print_result(green, yellow, red)
+
+            self.game.remaining_attempts -= 1
+
+        if not self.game.won:
+            self._print_lose(self.game.secret)
+```
+
+**Test it**
+
+```python
+if __name__ == "__main__":
+    m = MasterMind(max_attempts=5)
+    m.start()
+```
+
+Run `python mastermind.py`. You should be able to play a full game with 5 attempts.
+
+---
+
+## 4. Run the Game!
+
+Create `main.py`:
 
 ```python
 from menu import Menu
@@ -268,13 +618,19 @@ if __name__ == "__main__":
     menu.run()
 ```
 
+Run it:
+
+```
+python main.py
+```
+
 ---
 
-## 📤 Expected Gameplay Example
+## How It Should Look
 
 ```
 ==================================================
-           🧠 THINK & GUESS 🧠
+            THINK & GUESS
 ==================================================
 1. Start new game
 2. Set max attempts (current = 10)
@@ -301,16 +657,18 @@ Your guess: 1589
 
 ---
 
-## 📌 Evaluation Criteria
+## Evaluation Checklist
 
 | Criterion | What to check |
 |-----------|---------------|
-| `_generate_secret()` | Uses empty-list + `while` loop + `random.randint` + uniqueness check. |
-| `compare_guess()` | Returns correct `(green, yellow, red)` — no colours, no strings attached. |
-| `Game` has no `colorama` | No colour imports, no coloured output, no game loop in `game.py`. |
-| `MasterMind.play()` | Validates input, tracks attempts, stops on win or 0 attempts, coloured output. |
-| `MasterMind` result display | Shows aggregated `🟢-> / 🟡-> / 🔴->` counts only — no per-position colours. |
-| `Menu` works | Uses `MasterMind`, changes max attempts, exits cleanly. |
-| Input validation | Rejects wrong length, non-digits, repeated digits. |
-
-Good luck! 🚀
+| `_generate_secret()` | Empty-list + while + randint + uniqueness check |
+| `compare_guess()` | Returns correct `(green, yellow, red)` |
+| Game has no colorama | No colour imports in game.py |
+| `_print_header` | Cyan banner with centred yellow text |
+| `_print_result` | Aggregated `🟢-> / 🟡-> / 🔴->` counts |
+| `_print_win` | Green win message with secret |
+| `_print_lose` | Red game-over message with secret |
+| `MasterMind.start()` | Creates Game and calls play() |
+| `MasterMind.play()` | Validates input, tracks attempts, stops on win or 0 |
+| `Menu` works | Uses MasterMind, changes max attempts, exits cleanly |
+| Input validation | Rejects wrong length, non-digits, repeated digits |

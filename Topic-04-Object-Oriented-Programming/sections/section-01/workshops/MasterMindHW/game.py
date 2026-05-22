@@ -14,6 +14,12 @@ class Game:
         # won: becomes True when player guesses correctly
         self.won = False
 
+    def __repr__(self):
+        status = "WON" if self.won else "playing"
+        return (f"Game(secret={self.secret}, "
+                f"remaining={self.remaining_attempts}, "
+                f"status={status})")
+
     def _generate_secret(self) -> str:
         """Generate a 4-digit string with no repeated digits.
 

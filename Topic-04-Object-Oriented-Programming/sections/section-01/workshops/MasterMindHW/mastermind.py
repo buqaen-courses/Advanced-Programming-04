@@ -1,4 +1,4 @@
-from colorama import init, Fore, Back, Style
+from colorama import init, Fore, Style
 from game import Game
 
 init(autoreset=True)
@@ -86,13 +86,5 @@ class MasterMind:
                f. Else: call _print_result() with the counts.
                g. Decrement self.game.remaining_attempts.
             3. After loop, if not won, call _print_lose().
-
-        Example interaction:
-            ==================================================
-                          THINK & GUESS
-            ==================================================
-            Attempts left: 10
-            Your guess: 2571
-            🟢-> 1 / 🟡-> 1 / 🔴-> 2
         """
         pass

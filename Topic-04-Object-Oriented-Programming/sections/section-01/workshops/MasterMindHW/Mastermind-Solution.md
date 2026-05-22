@@ -1,6 +1,6 @@
-# 🧠 MasterMind – Full Solution
+# MasterMind - Full Solution
 
-Complete implementation of all three classes with the `pass` placeholders filled in.
+Complete implementation of all classes with `pass` placeholders filled in.
 
 ---
 
@@ -18,6 +18,12 @@ class Game:
         self.secret = self._generate_secret()
         self.remaining_attempts = max_attempts
         self.won = False
+
+    def __repr__(self):
+        status = "WON" if self.won else "playing"
+        return (f"Game(secret={self.secret}, "
+                f"remaining={self.remaining_attempts}, "
+                f"status={status})")
 
     def _generate_secret(self) -> str:
         """Generate a 4-digit string with no repeated digits."""
@@ -98,7 +104,7 @@ class MasterMind:
     def play(self):
         """Run the coloured game loop with input validation."""
         self._print_header("THINK & GUESS")
-        print(Fore.CYAN + f"Max attempts: {self.max_attempts}")
+        print(Fore.CYAN + f"Max attempts: {self.game.max_attempts}")
         print(Fore.CYAN + "Secret is a 4-digit number with no repeated digits.\n")
 
         while self.game.remaining_attempts > 0 and not self.game.won:
@@ -128,78 +134,7 @@ class MasterMind:
 
 ## `menu.py`
 
-```python
-from colorama import init, Fore, Style
-from mastermind import MasterMind
-
-init(autoreset=True)
-
-
-class Menu:
-    """Colourful interactive menu for the Think & Guess game."""
-
-    def __init__(self):
-        self.max_attempts = 10
-        self.mastermind = None
-
-    def _print_header(self, text: str):
-        print(Fore.CYAN + Style.BRIGHT + "=" * 50)
-        print(Fore.YELLOW + Style.BRIGHT + text.center(50))
-        print(Fore.CYAN + Style.BRIGHT + "=" * 50)
-
-    def _print_success(self, msg: str):
-        print(Fore.GREEN + f"\u2713 {msg}")
-
-    def _print_error(self, msg: str):
-        print(Fore.RED + f"\u2717 {msg}")
-
-    def _print_info(self, msg: str):
-        print(Fore.BLUE + f"\u2139 {msg}")
-
-    def start_new_game(self):
-        self.mastermind = MasterMind(max_attempts=self.max_attempts)
-        self.mastermind.start()
-        self._print_info("Game finished. Returning to menu...")
-
-    def set_max_attempts(self):
-        try:
-            new_val = int(input(
-                Fore.YELLOW + f"New max attempts (current = {self.max_attempts}): "
-                + Style.RESET_ALL
-            ).strip())
-            if new_val < 1:
-                self._print_error("Attempts must be >= 1")
-            else:
-                self.max_attempts = new_val
-                self._print_success(f"Max attempts set to {self.max_attempts}")
-        except ValueError:
-            self._print_error("Please enter a valid integer.")
-
-    def run(self):
-        while True:
-            self._print_header("\U0001f9e0 THINK & GUESS \U0001f9e0")
-            print(Fore.MAGENTA + Style.BRIGHT + "1." + Fore.GREEN + " Start new game")
-            print(Fore.MAGENTA + Style.BRIGHT + "2." + Fore.GREEN +
-                  f" Set max attempts (current = {self.max_attempts})")
-            print(Fore.RED + Style.BRIGHT + "0." + Fore.RED + " Exit")
-
-            choice = input(Fore.CYAN + "\nYour choice: " + Style.RESET_ALL).strip()
-
-            if choice == "1":
-                self.start_new_game()
-            elif choice == "2":
-                self.set_max_attempts()
-            elif choice == "0":
-                self._print_info("Thanks for playing! Goodbye.")
-                break
-            else:
-                self._print_error("Invalid choice. Enter 1, 2 or 0.")
-
-
-if __name__ == "__main__":
-    menu = Menu()
-    menu.run()
-```
+(Identical to the fully provided version in the homework file — see `menu.py`.)
 
 ---
 
