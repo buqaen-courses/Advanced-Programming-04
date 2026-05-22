@@ -15,6 +15,40 @@ Create a comprehensive game development framework that demonstrates advanced des
 
 ---
 
+## 📊 Requirements at a Glance
+
+```
+┌──────────────────────────────────────────────────────────────────────┐
+│ Pattern      │ Component           │ Key Methods / Purpose            │
+├──────────────────────────────────────────────────────────────────────┤
+│ Factory      │ EntityFactory       │ create_player(name, class_type)  │
+│              │                     │ create_enemy(type, difficulty)   │
+│              │                     │ create_npc(type, dialogue)       │
+│              │                     │ create_random_item(rarity)       │
+│              │ LevelFactory        │ create_level(level_type, params) │
+├──────────────┼─────────────────────┼──────────────────────────────────┤
+│ Strategy     │ AIStrategy (ABC)    │ execute(entity, game_state)      │
+│              │ ├─ AggressiveAI     │ attacks nearby enemies           │
+│              │ ├─ DefensiveAI      │ focuses on survival/healing      │
+│              │ ├─ PatrolAI         │ moves between waypoints          │
+│              │ ├─ FleeAI           │ runs from threats                │
+│              │ └─ GuardAI          │ protects locations               │
+├──────────────┼─────────────────────┼──────────────────────────────────┤
+│ Observer     │ GameEvent (base)    │ type, timestamp, source, data    │
+│              │ ├─ PlayerDeath      │ player died                      │
+│              │ ├─ EnemyDefeated    │ enemy defeated                   │
+│              │ ├─ ItemCollected    │ item collected                   │
+│              │ ├─ LevelComplete    │ level finished                   │
+│              │ └─ GameStateChange  │ state transition                 │
+│              │ EventManager (Sgltn)│ register, fire, event history    │
+├──────────────┼─────────────────────┼──────────────────────────────────┤
+│ Singleton    │ ResourceManager     │ load/cache assets, memory mgmt   │
+│              │ GameStateManager    │ game state, save/load            │
+└──────────────────────────────────────────────────────────────────────┘
+```
+
+---
+
 ## 🎯 Learning Objectives
 
 By completing this assignment, you will demonstrate the ability to:

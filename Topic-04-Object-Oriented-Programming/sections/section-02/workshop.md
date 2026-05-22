@@ -15,6 +15,31 @@ In this workshop, you'll build a comprehensive shape hierarchy system that demon
 
 ---
 
+## 🏛️ Architecture Overview
+
+```
+┌────────────────────────────────────────────────────────────┐
+│                    Shape Hierarchy                          │
+│                                                             │
+│                    Shape (ABC)                              │
+│  ┌───────────────────┼───────────────────┐                  │
+│  ▼                   ▼                   ▼                  │
+│ Rectangle          Circle             Triangle              │
+│  └── Square                                               │
+│                                                             │
+│  ShapeCollection (Polymorphic container)                    │
+│  ┌─────────────────────────────────────────────────────┐   │
+│  │ add_shape(shape)    → isinstance(shape, Shape)      │   │
+│  │ total_area()        → shape.area() for each         │   │
+│  │ total_perimeter()   → shape.perimeter() for each    │   │
+│  │ sort_by_area()      → sorted by shape.area()        │   │
+│  │ get_shapes_by_type() → filter by isinstance()       │   │
+│  └─────────────────────────────────────────────────────┘   │
+└────────────────────────────────────────────────────────────┘
+```
+
+---
+
 ## 🎯 Learning Objectives
 
 By completing this workshop, you will:

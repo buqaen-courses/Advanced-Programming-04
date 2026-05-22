@@ -15,6 +15,35 @@ Create a comprehensive vehicle management system that demonstrates advanced inhe
 
 ---
 
+## 📊 Requirements at a Glance
+
+```
+┌───────────────────────────────────────────────────────────────────┐
+│ Component      │ Description           │ Required Methods          │
+├───────────────────────────────────────────────────────────────────┤
+│ Vehicle(ABC)   │ Abstract base for all │ start_engine()            │
+│                │ vehicles              │ stop_engine()             │
+│                │                       │ accelerate(increase)      │
+│                │                       │ brake(decrease)           │
+│                │                       │ get_info() → dict         │
+├────────────────┼───────────────────────┼───────────────────────────┤
+│ Car            │ Passenger vehicle     │ Inherits Vehicle +        │
+│ Truck          │ Cargo vehicle         │ own attributes            │
+│ Motorcycle     │ 2-wheel vehicle       │ (doors, capacity,         │
+│ Boat           │ Water vehicle         │ type, etc.)               │
+├────────────────┼───────────────────────┼───────────────────────────┤
+│ Fleet          │ Vehicle collection    │ add_vehicle(vehicle)      │
+│                │ manager               │ remove_vehicle(id)        │
+│                │                       │ get_vehicle(id)           │
+│                │                       │ list_vehicles()           │
+│                │                       │ start_all_engines()       │
+│                │                       │ stop_all_engines()        │
+│                │                       │ get_fleet_status()        │
+└───────────────────────────────────────────────────────────────────┘
+```
+
+---
+
 ## 🎯 Learning Objectives
 
 By completing this assignment, you will demonstrate the ability to:

@@ -13,6 +13,36 @@ This section explores inheritance and polymorphism, two fundamental pillars of O
 
 ---
 
+## 🗺️ Section Roadmap
+
+```
+┌──────────────────────────────────────────────────────────┐
+│              Section 2 Learning Journey                    │
+│                                                           │
+│  Tutorial (30-40m)                                        │
+│  ┌──────────────────────────────────────────────────┐    │
+│  │  Learn: Inheritance, super(), Method Override,     │    │
+│  │  Polymorphism, ABC, Multiple Inheritance           │    │
+│  └────────────────────┬─────────────────────────────┘    │
+│                       ▼                                   │
+│  Workshop (40-50m)                                       │
+│  ┌──────────────────────────────────────────────────┐    │
+│  │  Build: Shape Hierarchy System                    │    │
+│  │  Shape(ABC) → Rectangle, Circle, Triangle         │    │
+│  │  ShapeCollection → polymorphic operations          │    │
+│  └────────────────────┬─────────────────────────────┘    │
+│                       ▼                                   │
+│  Homework (4-6h)                                         │
+│  ┌──────────────────────────────────────────────────┐    │
+│  │  Build: Vehicle Management System                 │    │
+│  │  Vehicle(ABC) → Car, Truck, Motorcycle, Boat      │    │
+│  │  Fleet → add/remove/list/start/stop/getStatus     │    │
+│  └──────────────────────────────────────────────────┘    │
+└──────────────────────────────────────────────────────────┘
+```
+
+---
+
 ## 🎯 Learning Objectives
 
 By the end of this section, you will be able to:

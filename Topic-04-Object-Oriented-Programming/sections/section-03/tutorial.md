@@ -29,6 +29,36 @@ By the end of this tutorial, you will be able to:
 
 ---
 
+## 🗺️ Concept Map
+
+```
+┌──────────────────────────────────────────────────────────────┐
+│                 Advanced OOP Concepts                         │
+│                                                              │
+│  Magic Methods        Property Decorators                    │
+│  ┌────────────────┐   ┌────────────────┐                     │
+│  │ __str__, __eq__ │   │ @property      │                     │
+│  │ __len__, __add__│   │ @name.setter   │                     │
+│  │ __getitem__     │   │ @name.deleter  │                     │
+│  └────────┬───────┘   └───────┬────────┘                     │
+│           │                   │                              │
+│           ▼                   ▼                              │
+│  ┌────────────────────────────────────────────────────┐      │
+│  │       Customize object behavior & control access    │      │
+│  └────────────────────┬───────────────────────────────┘      │
+│                       │                                      │
+│     ┌─────────────────┼──────────────────┐                   │
+│     ▼                 ▼                  ▼                   │
+│  Class Methods    Static Methods    Dataclasses              │
+│  (@classmethod)   (@staticmethod)   (@dataclass)             │
+│  ─ work on class  ─ utility funcs   ─ auto __init__         │
+│  ─ alt constructors ─ no self/cls    ─ auto __repr__        │
+│                                      ─ auto __eq__          │
+└──────────────────────────────────────────────────────────────┘
+```
+
+---
+
 ## 🎩 Magic Methods
 
 Magic methods (also called dunder methods) are special methods that start and end with double underscores. They allow you to customize how objects behave with built-in Python operations.

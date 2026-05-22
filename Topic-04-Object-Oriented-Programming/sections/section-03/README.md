@@ -13,6 +13,38 @@ This section explores advanced Object-Oriented Programming concepts that enable 
 
 ---
 
+## 🗺️ Section Roadmap
+
+```
+┌──────────────────────────────────────────────────────────┐
+│              Section 3 Learning Journey                    │
+│                                                           │
+│  Tutorial (30-40m)                                        │
+│  ┌──────────────────────────────────────────────────┐    │
+│  │  Learn: Magic Methods, Property Decorators,       │    │
+│  │  Class/Static Methods, Dataclasses,               │    │
+│  │  Advanced Class Design                            │    │
+│  └────────────────────┬─────────────────────────────┘    │
+│                       ▼                                   │
+│  Workshop (40-50m)                                       │
+│  ┌──────────────────────────────────────────────────┐    │
+│  │  Build: Banking System                            │    │
+│  │  Transaction (dataclass) + BankAccount            │    │
+│  │  (magic methods + properties + classmethods)      │    │
+│  │  Bank (collection management)                     │    │
+│  └────────────────────┬─────────────────────────────┘    │
+│                       ▼                                   │
+│  Homework (4-6h)                                         │
+│  ┌──────────────────────────────────────────────────┐    │
+│  │  Build: SmartList Custom Container                │    │
+│  │  Sequence protocol (__getitem__, __len__, etc.)   │    │
+│  │  Configurable properties + factory classmethods   │    │
+│  └──────────────────────────────────────────────────┘    │
+└──────────────────────────────────────────────────────────┘
+```
+
+---
+
 ## 🎯 Learning Objectives
 
 By the end of this section, you will be able to:

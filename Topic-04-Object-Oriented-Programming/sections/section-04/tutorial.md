@@ -31,6 +31,39 @@ By the end of this tutorial, you will be able to:
 
 ---
 
+## 🗺️ Concept Map
+
+```
+┌──────────────────────────────────────────────────────────────┐
+│                    Design Patterns Map                        │
+│                                                              │
+│  ┌───────────┐   ┌───────────┐   ┌───────────┐              │
+│  │ Creational│   │ Structural│   │ Behavioral│              │
+│  │  Patterns │   │  Patterns │   │  Patterns │              │
+│  └─────┬─────┘   └─────┬─────┘   └─────┬─────┘              │
+│        │               │               │                     │
+│  ┌─────┴─────┐   ┌─────┴─────┐   ┌─────┴─────┐              │
+│  │ Singleton │   │  Adapter  │   │ Observer  │              │
+│  │  Factory  │   │ Decorator │   │ Strategy  │              │
+│  │  Builder  │   │   Facade  │   │  Command  │              │
+│  └───────────┘   └───────────┘   └───────────┘              │
+│                                                              │
+│  Patterns Covered in Section 4:                              │
+│  ┌────────────────────────────────────────────────────┐     │
+│  │ Singleton ─ "only one instance"                     │     │
+│  │  │── __new__ override │ metaclass │ registry        │     │
+│  │ Factory ── "create objects without specifying type" │     │
+│  │  │── Simple │ Factory Method │ Abstract Factory     │     │
+│  │ Observer ─ "notify dependents of state changes"     │     │
+│  │  │── Subject │ Observer │ Event System              │     │
+│  │ Strategy ─ "interchangeable algorithms"             │     │
+│  │     │── Context │ Strategy Interface │ Concrete Sts │     │
+│  └────────────────────────────────────────────────────┘     │
+└──────────────────────────────────────────────────────────────┘
+```
+
+---
+
 ## 🤔 What are Design Patterns?
 
 Design patterns are **proven solutions to common software design problems**. They provide templates for solving recurring design issues in object-oriented programming.

@@ -13,6 +13,40 @@ This section explores common design patterns that provide proven solutions to re
 
 ---
 
+## 🗺️ Section Roadmap
+
+```
+┌──────────────────────────────────────────────────────────┐
+│              Section 4 Learning Journey                    │
+│                                                           │
+│  Tutorial (30-40m)                                        │
+│  ┌──────────────────────────────────────────────────┐    │
+│  │  Learn: Singleton, Factory, Observer, Strategy,   │    │
+│  │  Pattern Combinations, When to use each           │    │
+│  └────────────────────┬─────────────────────────────┘    │
+│                       ▼                                   │
+│  Workshop (40-50m)                                       │
+│  ┌──────────────────────────────────────────────────┐    │
+│  │  Build: E-commerce System                         │    │
+│  │  Singleton: SessionManager, ConfigurationManager  │    │
+│  │  Observer: ShoppingCart → CartLogger, Inventory   │    │
+│  │  Strategy: Standard/Express/Overnight Shipping    │    │
+│  │  Factory: ProductFactory, PaymentFactory          │    │
+│  └────────────────────┬─────────────────────────────┘    │
+│                       ▼                                   │
+│  Homework (4-6h)                                         │
+│  ┌──────────────────────────────────────────────────┐    │
+│  │  Build: Game Development Framework                │    │
+│  │  Strategy: AI behaviors (Aggressive, Defensive)   │    │
+│  │  Observer: Event system (PlayerDeath, LevelUp)    │    │
+│  │  Singleton: ResourceManager, GameState            │    │
+│  │  Factory: EntityFactory, LevelFactory             │    │
+│  └──────────────────────────────────────────────────┘    │
+└──────────────────────────────────────────────────────────┘
+```
+
+---
+
 ## 🎯 Learning Objectives
 
 By the end of this section, you will be able to:
