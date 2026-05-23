@@ -1,5 +1,5 @@
 class Player:
-    """Represents a player with a score and current turn total."""
+    """Represents a player with score, turn total, and shield mechanics."""
 
     def __init__(self, name: str, is_ai: bool = False):
         self.name = name
